@@ -4,7 +4,7 @@ const pptxgen = require('pptxgenjs');
 const JSZip = require('jszip');
 const fs = require('fs');
 const { iconPng, brainSVG, svgToPng, lobarDots, deepDots } = require('./assets');
-const NOTES = require('./notes');
+const NOTES = require('./notes_v1');
 
 const OUT = process.argv[2] || 'deck.pptx';
 

@@ -1,0 +1,655 @@
+<title>Vessel Talk Rehearsal Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:wght@700&family=Carlito:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a stage-side confidence monitor. One big timer and the cue for the slide you're on; drills, transcript checks and your log sit one tab away. */
+:root {
+  --bg: #F4F6F9; --surface: #FFFFFF; --sunk: #EBEFF4; --ink: #13233A; --muted: #5C6879; --line: #D6DDE6;
+  --accent: #C1272D; --accent-ink: #FFFFFF; --accent-soft: #F7E0E1; --good: #2F7A57; --good-soft: #E1F1E8; --warn: #9A6412; --warn-soft: #F6EBD7;
+  --display: 'Caladea', 'Cambria', Georgia, serif; --body: 'Carlito', 'Calibri', 'Segoe UI', system-ui, sans-serif; --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1524; --surface: #152137; --sunk: #1B2A44; --ink: #E7ECF3; --muted: #9DAABB; --line: #273957;
+  --accent: #EE6A70; --accent-ink: #1A0D10; --accent-soft: #3A1E27; --good: #5CC093; --good-soft: #173A2C; --warn: #E3AE55; --warn-soft: #3B2E17; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0D1524; --surface: #152137; --sunk: #1B2A44; --ink: #E7ECF3; --muted: #9DAABB; --line: #273957;
+  --accent: #EE6A70; --accent-ink: #1A0D10; --accent-soft: #3A1E27; --good: #5CC093; --good-soft: #173A2C; --warn: #E3AE55; --warn-soft: #3B2E17; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 16px; padding-block: 18px 40px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(26px, 4.6vw, 38px); }
+h2 { font-size: 24px; }
+h3 { font-size: 19px; }
+p { margin: 0; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+.muted { color: var(--muted); }
+.tnum { font-variant-numeric: tabular-nums; }
+
+header.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; }
+.top .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: var(--sunk); font-size: 14px; }
+.chip b { font-variant-numeric: tabular-nums; }
+.chip.hot { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+
+nav.tabs { display: flex; gap: 4px; margin: 18px 0 16px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+nav.tabs button { border: 0; background: none; padding: 10px 14px; font-weight: 700; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.acts { display: grid; grid-template-columns: 5fr 8fr 6fr 5fr 4fr; gap: 3px; margin-bottom: 14px; }
+.act { display: grid; gap: 4px; min-width: 0; }
+.act .bar { display: flex; gap: 2px; height: 8px; }
+.act .bar i { flex: 1; border-radius: 2px; background: var(--line); }
+.act .bar i.done { background: var(--ink); }
+.act .bar i.now { background: var(--accent); }
+.act span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.act.on span { color: var(--accent); }
+
+.stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 760px) { .stage { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; min-width: 0; }
+.cue .no { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.cue h2 { font-size: clamp(24px, 3.6vw, 32px); margin: 6px 0 12px; }
+.cue .say { font-size: 19px; line-height: 1.45; }
+.cue .do { margin-top: 14px; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+.cue .do b { color: var(--accent); white-space: nowrap; }
+.cue .next { margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 14px; color: var(--muted); }
+
+.clock { display: grid; gap: 14px; }
+.big { font-family: var(--mono); font-weight: 600; font-size: clamp(54px, 10vw, 84px); line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.big.over { color: var(--warn); }
+.big.way { color: var(--accent); }
+.gauge { height: 10px; border-radius: 999px; background: var(--sunk); overflow: hidden; }
+.gauge i { display: block; height: 100%; width: 0; background: var(--good); transition: width .25s linear; }
+.gauge i.over { background: var(--warn); }
+.gauge i.way { background: var(--accent); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; justify-content: space-between; }
+.total { font-family: var(--mono); font-size: 22px; font-variant-numeric: tabular-nums; }
+.delta { font-weight: 700; font-size: 14px; padding: 3px 9px; border-radius: 999px; }
+.delta.ok { background: var(--good-soft); color: var(--good); }
+.delta.late { background: var(--warn-soft); color: var(--warn); }
+
+.controls { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 8px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 12px 14px; font-weight: 700; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; }
+.btn:disabled { opacity: .5; cursor: default; }
+.fillers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.fill { border: 1px solid var(--line); background: var(--sunk); border-radius: 8px; padding: 10px 8px; text-align: left; display: grid; gap: 2px; }
+.fill b { font-family: var(--mono); font-size: 24px; font-variant-numeric: tabular-nums; }
+.fill span { font-size: 13px; color: var(--muted); }
+.fill kbd { font-family: var(--mono); font-size: 11px; color: var(--muted); border: 0; background: none; padding: 0; }
+.keys { font-size: 13px; color: var(--muted); }
+kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--surface); }
+
+.summary { margin-top: 16px; display: grid; gap: 16px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stat { background: var(--sunk); border-radius: 8px; padding: 12px; }
+.stat b { display: block; font-family: var(--mono); font-size: 26px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 14px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.tag.ok { background: var(--good-soft); color: var(--good); }
+.tag.late { background: var(--warn-soft); color: var(--warn); }
+.tag.ex { background: var(--sunk); color: var(--muted); }
+label { font-weight: 700; font-size: 14px; display: grid; gap: 6px; }
+input[type=text], input[type=number], textarea, select { width: 100%; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 10px 12px; font-weight: 400; }
+textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
+.form { display: grid; gap: 12px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .two { grid-template-columns: 1fr; } }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.note { font-size: 14px; color: var(--muted); }
+.coachout { white-space: pre-wrap; background: var(--sunk); border-radius: 8px; padding: 14px; font-size: 16px; line-height: 1.5; }
+
+.drills { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; }
+.drill { display: grid; gap: 10px; align-content: start; }
+.drill header { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.drill .src { font-size: 13px; color: var(--muted); }
+.drill ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.drill .why { font-size: 15px; color: var(--muted); }
+.drill .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.drill .dtime { font-family: var(--mono); font-size: 22px; font-variant-numeric: tabular-nums; }
+.drill.done { border-color: var(--good); }
+.qa { display: grid; gap: 10px; }
+.qa .q { font-family: var(--display); font-size: 22px; line-height: 1.25; }
+.qa details { background: var(--sunk); border-radius: 8px; padding: 10px 12px; }
+.qa summary { cursor: pointer; font-weight: 700; }
+
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.metric { border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; gap: 2px; }
+.metric b { font-family: var(--mono); font-size: 26px; font-variant-numeric: tabular-nums; }
+.metric .band { font-size: 13px; }
+.metric .band.ok { color: var(--good); }
+.metric .band.late { color: var(--warn); }
+.hl { display: grid; gap: 6px; }
+.hl li { font-size: 15px; }
+.examplebar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--warn-soft); color: var(--ink); font-size: 14px; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+.empty { padding: 26px; text-align: left; border: 1px dashed var(--line); border-radius: var(--r); color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .gauge i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Chapter 5 · When the vessel breaks</div>
+      <h1>Rehearsal coach</h1>
+    </div>
+    <div class="meta">
+      <span class="chip hot" id="countdown">Sunday 4 October, 8 pm</span>
+      <span class="chip">Target <b>17:15</b> + questions</span>
+      <span class="chip">Runs logged <b id="runCount">0</b></span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-rehearse" aria-selected="true" data-tab="rehearse">Rehearse</button>
+    <button role="tab" id="tab-drills" aria-selected="false" data-tab="drills">Drills</button>
+    <button role="tab" id="tab-transcript" aria-selected="false" data-tab="transcript">Check a transcript</button>
+    <button role="tab" id="tab-log" aria-selected="false" data-tab="log">Log</button>
+  </nav>
+
+  <!-- REHEARSE -->
+  <section id="rehearse" role="tabpanel">
+    <div class="acts" id="acts"></div>
+    <div class="stage">
+      <article class="panel cue" aria-live="polite">
+        <div class="no" id="cueNo">Slide 1 of 28 · Opening</div>
+        <h2 id="cueTitle">When the vessel breaks</h2>
+        <p class="say" id="cueSay"></p>
+        <div class="do" id="cueDo" hidden><b>Do</b><span id="cueDoText"></span></div>
+        <div class="next" id="cueNext"></div>
+      </article>
+      <aside class="panel clock">
+        <div class="row"><span class="muted">This slide</span><span class="muted tnum" id="slideTarget">target 0:20</span></div>
+        <div class="big" id="slideClock">0:00</div>
+        <div class="gauge" aria-hidden="true"><i id="slideGauge"></i></div>
+        <div class="row"><span class="total" id="totalClock">0:00 / 17:15</span><span class="delta ok" id="pace">On pace</span></div>
+        <div class="controls">
+          <button class="btn" id="backBtn" type="button">Back</button>
+          <button class="btn ghost" id="pauseBtn" type="button">Pause</button>
+          <button class="btn primary" id="nextBtn" type="button">Start run</button>
+        </div>
+        <div class="fillers">
+          <button class="fill" type="button" data-f="um"><b id="f-um">0</b><span>um / uh / er</span><kbd>U</kbd></button>
+          <button class="fill" type="button" data-f="so"><b id="f-so">0</b><span>so / like / you know</span><kbd>S</kbd></button>
+          <button class="fill" type="button" data-f="other"><b id="f-other">0</b><span>other habit</span><kbd>O</kbd></button>
+        </div>
+        <p class="keys"><kbd>Space</kbd> next · <kbd>←</kbd> back · <kbd>P</kbd> pause · tap a counter each time you hear it</p>
+        <button class="btn ghost" id="resetBtn" type="button">Reset run</button>
+      </aside>
+    </div>
+
+    <section class="summary panel" id="summary" hidden>
+      <div>
+        <div class="eyebrow">Run complete</div>
+        <h2 id="sumHead">Your run</h2>
+      </div>
+      <div class="stats" id="sumStats"></div>
+      <div class="tablewrap"><table id="actTable"></table></div>
+      <p class="note" id="slowSlides"></p>
+      <form class="form" id="reflect">
+        <div class="two">
+          <label for="wentWell">What went well?<textarea id="wentWell" placeholder="e.g. the golf-ball silence landed"></textarea></label>
+          <label for="oneChange">One change for the next run<textarea id="oneChange" placeholder="e.g. slow down on slide 26"></textarea></label>
+        </div>
+        <div class="two">
+          <label for="confidence">Confidence right now (1–5)
+            <select id="confidence"><option value="1">1 · shaky</option><option value="2">2</option><option value="3" selected>3 · getting there</option><option value="4">4</option><option value="5">5 · ready</option></select>
+          </label>
+          <label for="runMode">Run type
+            <select id="runMode"><option value="full-standing">Full run, standing, out loud</option><option value="full-seated">Full run, seated</option><option value="recorded">Recorded on video</option><option value="audience">In front of someone</option></select>
+          </label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="submit" id="saveRun">Save run to log</button>
+          <button class="btn" type="button" id="coachRun" hidden>Ask Claude to coach this run</button>
+          <span class="note" id="saveNote"></span>
+        </div>
+      </form>
+      <div class="coachout" id="runCoach" hidden></div>
+    </section>
+  </section>
+
+  <!-- DRILLS -->
+  <section id="drills" role="tabpanel" hidden>
+    <p class="note" style="margin-bottom:14px">Eight drills from your knowledge base. Do two or three a day, standing up, out loud. Each timer is the drill's length.</p>
+    <div class="drills" id="drillGrid"></div>
+    <article class="panel qa" style="margin-top:16px" id="qaPanel">
+      <div class="row"><div><div class="eyebrow">Drill 8 · Q&amp;A fire drill</div><h3>Answer in 30 seconds: answer, one fact, stop</h3></div><span class="big" style="font-size:40px" id="qaClock">0:30</span></div>
+      <p class="q" id="qaQ">Press “Next question” to start.</p>
+      <details id="qaA" hidden><summary>Show a model answer</summary><p id="qaAText"></p></details>
+      <div class="actions"><button class="btn primary" type="button" id="qaNext">Next question</button><button class="btn" type="button" id="qaStop">Stop</button></div>
+    </article>
+  </section>
+
+  <!-- TRANSCRIPT -->
+  <section id="transcript" role="tabpanel" hidden>
+    <div class="grid2">
+      <form class="panel form" id="tForm">
+        <h3>Paste a rehearsal transcript</h3>
+        <p class="note">Record a run on your phone, use its transcribe or dictation feature, then paste the text here. Add how long that stretch took.</p>
+        <div class="examplebar" id="exampleBar"><b>Example loaded.</b> Replace it with your own transcript.</div>
+        <label for="tText">Transcript<textarea id="tText" style="min-height:220px"></textarea></label>
+        <div class="two">
+          <label for="tDur">Duration (minutes:seconds)<input type="text" id="tDur" value="1:10" inputmode="numeric"></label>
+          <label for="tPart">Which part?<select id="tPart"><option>Whole talk</option><option>Opening (slides 1–5)</option><option>01 The vessel (6–13)</option><option>02 The first hours (14–19)</option><option>03 The days after (20–24)</option><option>04 At the bedside (25–28)</option><option>Q&amp;A answers</option></select></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="submit">Analyse</button>
+          <button class="btn" type="button" id="coachT" hidden>Ask Claude for coaching</button>
+          <button class="btn ghost" type="button" id="saveT">Save to log</button>
+        </div>
+        <span class="note" id="tNote"></span>
+      </form>
+      <div class="panel" style="display:grid; gap:14px; align-content:start">
+        <div><div class="eyebrow" id="tLabel">Example analysis</div><h3>What the numbers say</h3></div>
+        <div class="metrics" id="tMetrics"></div>
+        <ul class="hl" id="tHints"></ul>
+        <div class="coachout" id="tCoach" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOG -->
+  <section id="log" role="tabpanel" hidden>
+    <div class="panel" style="display:grid; gap:14px">
+      <div class="row"><h3>Your runs</h3><span class="note" id="logNote">Loading your log…</span></div>
+      <div id="logBody"><div class="empty">Your saved runs appear here. Finish a run on the Rehearse tab and press “Save run to log”.</div></div>
+    </div>
+    <div class="panel" style="display:grid; gap:14px; margin-top:16px">
+      <h3>Transcript checks</h3>
+      <div id="tLogBody"><div class="empty">Saved transcript checks appear here.</div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const TALK = new Date(2026, 9, 4, 20, 0, 0);
+  const ACTS = [
+    { name: 'Opening', from: 1, to: 5 },
+    { name: '01 Vessel', from: 6, to: 13 },
+    { name: '02 Hours', from: 14, to: 19 },
+    { name: '03 Days', from: 20, to: 24 },
+    { name: '04 Bedside', from: 25, to: 28 },
+  ];
+  const SLIDES = [
+    [20, 'When the vessel breaks', 'Stand still at the centre first. “My chapter is Chapter 5 … I want to start with one person.”', ''],
+    [35, '10 December 1996', '7 a.m. A 37-year-old scientist wakes with a pounding pain behind her left eye. Her name is Jill Bolte Taylor. She studies the brain for a living.', ''],
+    [35, 'Within four hours', 'Balance, then her right arm, then her speech. The numbers on the phone look like squiggles. A vessel had burst in the left side of her brain.', 'Ask for a show of hands: who has looked after someone with a bleed like this? Say what you see.'],
+    [40, '40%', 'Point at the number and pause. “Forty percent die within a month.” It did not move between 1980 and 2008.', ''],
+    [45, 'ICH is a process, not a moment', 'Say the headline slowly, then pause. The vessel decides where; the first hours decide how big; the blood keeps injuring for days.', ''],
+    [5, '01 · The vessel', '“Stage one. The vessel. Why does a small artery give way?”', ''],
+    [45, 'Hypertension and amyloid cause over half', 'Point at the two red bars and stay silent for two seconds. 35 plus 20: over half, both small-vessel diseases.', ''],
+    [60, 'Two diseases, two sets of vessels', 'Left to right: healthy, then hypertension (thick, glassy, brittle; the microaneurysm bulge), then amyloid (the dark dots).', ''],
+    [30, 'Where it bleeds: deep', 'Deep bleed, think hypertension. Perforators branch at right angles off high-pressure trunks.', ''],
+    [30, 'Where it bleeds: lobar', 'Lobar in an older adult points to amyloid. Young or atypical should make us suspicious. “Keep that thought.”', ''],
+    [40, 'Microbleeds are the footprints', 'Black dots on MRI. Surface points to amyloid, deep to hypertension. Cordonnier’s review: 60% of people with ICH.', ''],
+    [45, 'Your turn: primary or secondary?', 'Jill was 37, normotensive, with a lobar bleed.', 'Ask them to discuss with a neighbour for 30 seconds. Count to 30 silently, then take two answers.'],
+    [45, 'Secondary: an AVM', 'Born with an AVM, and it ruptured. 65% of patients like her had a lesion; over 45, hypertensive, deep: zero. The story tells you where to look.', ''],
+    [5, '02 · The first hours', '“Stage two. The first hours. Jill had four of them.”', ''],
+    [45, 'One rupture can trigger more', 'Rupture, haematoma, avalanche (Fisher, 1971), tamponade. “So how often does the bleeding keep going?”', ''],
+    [30, 'How many bleeds keep growing?', '100 patients, all scanned within three hours.', 'Take a vote with hands up: A five, B fifteen, C forty. Say what you see.'],
+    [45, '38 in 100 keep growing', 'Wait for the dots to finish, then say “Thirty-eight.” 26 within an hour, 12 more by 20 hours. This is Jill’s four hours.', ''],
+    [60, 'The golf ball', 'A golf ball holds about 40 mL. The dashed line is 60 mL. A clot that grows by a third looks only 10% wider. 91% mortality at 60 mL with GCS 8 or less.', 'Before you speak, take the golf ball out, hold it up and stay silent for three seconds.'],
+    [45, 'The skull is a closed box', 'Trace the rings outwards: compression, raised pressure, shift. About 45% break into the ventricles.', ''],
+    [5, '03 · The days after', '“Stage three. The bleeding has stopped. The injury has not.”', ''],
+    [55, 'Oedema builds in waves', 'Hours: clot retracts. Days 1–2: thrombin. Day 3+: iron. Weeks: clearance. +75% in 24 hours. Jill: surgery 17 days later.', ''],
+    [45, 'Three toxins, one result', 'Thrombin, iron, inflammation. Point to the dark bar: leaky barrier, more oedema, neuronal death.', ''],
+    [30, 'True or false?', '“The rim around the clot is starving tissue.”', 'Ask for hands up for “true”, count them and say what you see.'],
+    [40, 'Resting, not starving', 'Flow 56%, oxygen use 48%: the tissue is resting. ICH ADAPT: below 150 did not reduce flow.', ''],
+    [5, '04 · At the bedside', '“So what do we do with all this at the bedside?”', ''],
+    [75, 'Every stage is a window to act', 'Slow down here: this is the heart of the talk. Vessel: blood pressure and antithrombotics. Hours: image fast, reverse, watch the GCS. Days: expect fluctuation, escalate, pace therapy.', ''],
+    [30, 'Three things', 'Read each line slowly, with a pause between them.', ''],
+    [45, 'Close: back to Jill', 'Eight years to recover, then the TED stage with a human brain. “ICH is a process, not a moment.”', 'Pause for three seconds, then ask: “What would you like me to clarify?”'],
+  ].map(([t, title, say, doIt], i) => ({ n: i + 1, t, title, say, doIt }));
+  const TARGET = SLIDES.reduce((a, s) => a + s.t, 0);
+
+  const $ = (id) => document.getElementById(id);
+  const fmt = (sec) => { sec = Math.max(0, Math.round(sec)); return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); };
+  const actOf = (n) => ACTS.find((a) => n >= a.from && n <= a.to);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // ---------- countdown ----------
+  (function countdown() {
+    const days = Math.ceil((TALK - new Date()) / 86400000);
+    $('countdown').textContent = days > 1 ? `Sunday 8 pm · ${days} days to go` : days === 1 ? 'Sunday 8 pm · tomorrow' : days === 0 ? 'Talk day · 8 pm' : 'Talk delivered';
+  })();
+
+  // ---------- tabs ----------
+  document.querySelectorAll('nav.tabs button').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.tab)));
+  function showTab(name) {
+    document.querySelectorAll('nav.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
+    ['rehearse', 'drills', 'transcript', 'log'].forEach((id) => { $(id).hidden = id !== name; });
+    try { localStorage.setItem('coach.tab', name); } catch (e) {}
+  }
+  try { const t = localStorage.getItem('coach.tab'); if (t) showTab(t); } catch (e) {}
+  if (/^#(rehearse|drills|transcript|log)$/.test(location.hash)) showTab(location.hash.slice(1));
+
+  // ---------- rehearse ----------
+  const run = { started: false, finished: false, paused: false, idx: 0, slideMs: SLIDES.map(() => 0), mark: 0, fill: { um: 0, so: 0, other: 0 } };
+  let wakeLock = null;
+
+  function buildActs() {
+    $('acts').innerHTML = ACTS.map((a, ai) => `<div class="act" data-act="${ai}"><div class="bar">${SLIDES.filter((s) => s.n >= a.from && s.n <= a.to).map((s) => `<i data-s="${s.n}"></i>`).join('')}</div><span>${esc(a.name)}</span></div>`).join('');
+  }
+  function elapsedSlide() { return run.slideMs[run.idx] + (run.started && !run.paused && !run.finished ? performance.now() - run.mark : 0); }
+  function totalMs() { return run.slideMs.reduce((a, b) => a + b, 0) + (run.started && !run.paused && !run.finished ? performance.now() - run.mark : 0); }
+  function plannedTo(idx) { return SLIDES.slice(0, idx).reduce((a, s) => a + s.t, 0); }
+
+  function renderCue() {
+    const s = SLIDES[run.idx], a = actOf(s.n);
+    $('cueNo').textContent = `Slide ${s.n} of ${SLIDES.length} · ${a.name}`;
+    $('cueTitle').textContent = s.title;
+    $('cueSay').textContent = s.say;
+    $('cueDo').hidden = !s.doIt; $('cueDoText').textContent = s.doIt;
+    const nx = SLIDES[run.idx + 1];
+    $('cueNext').textContent = nx ? `Next: ${nx.n}. ${nx.title}` : 'Next: questions';
+    $('slideTarget').textContent = 'target ' + fmt(s.t);
+    document.querySelectorAll('#acts i').forEach((i) => { const n = +i.dataset.s; i.className = n < s.n ? 'done' : n === s.n && run.started ? 'now' : ''; });
+    document.querySelectorAll('#acts .act').forEach((el, ai) => el.classList.toggle('on', ACTS[ai] === a));
+    $('nextBtn').textContent = !run.started ? 'Start run' : run.idx === SLIDES.length - 1 ? 'Finish run' : 'Next slide';
+    $('pauseBtn').textContent = run.paused ? 'Resume' : 'Pause';
+    $('pauseBtn').disabled = !run.started || run.finished;
+    $('backBtn').disabled = !run.started || run.idx === 0 || run.finished;
+  }
+  function tick() {
+    const s = SLIDES[run.idx], sec = elapsedSlide() / 1000, ratio = sec / s.t;
+    const big = $('slideClock'), g = $('slideGauge');
+    big.textContent = fmt(sec);
+    const cls = ratio > 1.5 ? 'way' : ratio > 1.1 ? 'over' : '';
+    big.className = 'big ' + cls; g.className = cls;
+    g.style.width = Math.min(100, ratio * 100) + '%';
+    const tot = totalMs() / 1000;
+    $('totalClock').textContent = `${fmt(tot)} / ${fmt(TARGET)}`;
+    const planned = plannedTo(run.idx) + Math.min(sec, s.t);
+    const diff = tot - planned;
+    const p = $('pace');
+    if (!run.started) { p.textContent = 'Ready'; p.className = 'delta ok'; }
+    else if (Math.abs(diff) < 15) { p.textContent = 'On pace'; p.className = 'delta ok'; }
+    else if (diff > 0) { p.textContent = `${fmt(diff)} behind`; p.className = 'delta late'; }
+    else { p.textContent = `${fmt(-diff)} ahead`; p.className = 'delta ok'; }
+    requestAnimationFrame(tick);
+  }
+  function bank() { if (run.started && !run.paused && !run.finished) { const now = performance.now(); run.slideMs[run.idx] += now - run.mark; run.mark = now; } }
+  async function lockScreen() { try { wakeLock = await navigator.wakeLock?.request('screen'); } catch (e) { wakeLock = null; } }
+  function next() {
+    if (run.finished) return;
+    if (!run.started) { run.started = true; run.mark = performance.now(); lockScreen(); renderCue(); return; }
+    bank();
+    if (run.idx === SLIDES.length - 1) { finish(); return; }
+    run.idx += 1; renderCue();
+  }
+  function back() { if (!run.started || run.finished || run.idx === 0) return; bank(); run.idx -= 1; renderCue(); }
+  function pause() {
+    if (!run.started || run.finished) return;
+    if (run.paused) { run.paused = false; run.mark = performance.now(); } else { bank(); run.paused = true; }
+    renderCue();
+  }
+  function reset() {
+    Object.assign(run, { started: false, finished: false, paused: false, idx: 0, slideMs: SLIDES.map(() => 0), mark: 0, fill: { um: 0, so: 0, other: 0 } });
+    ['um', 'so', 'other'].forEach((k) => { $('f-' + k).textContent = '0'; });
+    $('summary').hidden = true; $('runCoach').hidden = true; $('saveNote').textContent = ''; $('saveRun').disabled = false;
+    try { wakeLock?.release(); } catch (e) {}
+    renderCue();
+  }
+  function bump(k) { if (!run.started || run.finished) return; run.fill[k] += 1; $('f-' + k).textContent = run.fill[k]; }
+
+  function runStats() {
+    const secs = run.slideMs.map((ms) => ms / 1000);
+    const total = secs.reduce((a, b) => a + b, 0);
+    const fillers = run.fill.um + run.fill.so + run.fill.other;
+    const perMin = total > 0 ? fillers / (total / 60) : 0;
+    const acts = ACTS.map((a) => {
+      const idx = SLIDES.filter((s) => s.n >= a.from && s.n <= a.to).map((s) => s.n - 1);
+      return { name: a.name, actual: idx.reduce((x, i) => x + secs[i], 0), target: idx.reduce((x, i) => x + SLIDES[i].t, 0) };
+    });
+    const slow = SLIDES.filter((s, i) => secs[i] > s.t * 1.3 && secs[i] - s.t > 10).map((s) => ({ n: s.n, title: s.title, over: secs[s.n - 1] - s.t }));
+    return { secs, total, fillers, perMin, acts, slow };
+  }
+  function finish() {
+    run.finished = true; try { wakeLock?.release(); } catch (e) {}
+    renderCue();
+    const st = runStats();
+    const diff = st.total - TARGET;
+    $('sumHead').textContent = Math.abs(diff) < 30 ? 'Right on time' : diff > 0 ? `${fmt(diff)} over the target` : `${fmt(-diff)} under the target`;
+    $('sumStats').innerHTML = [
+      [fmt(st.total), `total (target ${fmt(TARGET)})`],
+      [st.perMin.toFixed(1), 'fillers per minute (aim under 2)'],
+      [String(st.fillers), `fillers: ${run.fill.um} um · ${run.fill.so} so/like · ${run.fill.other} other`],
+      [String(st.slow.length), 'slides well over their target'],
+    ].map(([b, s]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join('');
+    $('actTable').innerHTML = '<tr><th>Section</th><th class="num">Actual</th><th class="num">Target</th><th></th></tr>' +
+      st.acts.map((a) => { const late = a.actual > a.target * 1.15; return `<tr><td>${esc(a.name)}</td><td class="num">${fmt(a.actual)}</td><td class="num">${fmt(a.target)}</td><td><span class="tag ${late ? 'late' : 'ok'}">${late ? 'long' : 'fine'}</span></td></tr>`; }).join('');
+    $('slowSlides').textContent = st.slow.length ? 'Longest overruns: ' + st.slow.sort((a, b) => b.over - a.over).slice(0, 3).map((s) => `slide ${s.n} (${s.title}, +${fmt(s.over)})`).join('; ') + '. Rehearse these on their own before the next full run.' : 'No slide ran badly over. Good control of time.';
+    $('summary').hidden = false;
+    $('summary').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  $('nextBtn').addEventListener('click', next);
+  $('backBtn').addEventListener('click', back);
+  $('pauseBtn').addEventListener('click', pause);
+  $('resetBtn').addEventListener('click', reset);
+  document.querySelectorAll('.fill').forEach((b) => b.addEventListener('click', () => bump(b.dataset.f)));
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if ($('rehearse').hidden) return;
+    const k = e.key.toLowerCase();
+    if (k === ' ' || k === 'arrowright' || k === 'pagedown') { e.preventDefault(); next(); }
+    else if (k === 'arrowleft' || k === 'pageup') { e.preventDefault(); back(); }
+    else if (k === 'p') pause();
+    else if (k === 'u') bump('um'); else if (k === 's') bump('so'); else if (k === 'o') bump('other');
+  });
+  buildActs(); renderCue(); requestAnimationFrame(tick);
+
+  // ---------- drills ----------
+  const DRILLS = [
+    { n: 1, name: 'Pause, don’t um', src: 'Berkun', min: 2, why: 'Silence reads as confidence. Comedians spend a fifth or more of their stage time silent.', steps: ['Record yourself giving slide 4 (40%).', 'Each time an “um” is coming, close your mouth and pause instead.', 'Play it back and count. Aim for under 2 fillers a minute.'] },
+    { n: 2, name: 'Stress one word', src: 'Berkun · Gallo', min: 3, why: 'Your voice is a highlighter. Stressing one word per sentence tells the room what matters.', steps: ['Say “I believe all people should have the right to laugh” seven times, stressing a different word each time.', 'Say “ICH is a process, not a moment” three ways.', 'Keep the version where “process” lands hardest.'] },
+    { n: 3, name: 'Talk through the picture', src: 'Roam', min: 5, why: 'Speakers used to bullet points freeze on a picture slide. Narrate it in four steps instead.', steps: ['Use slides 7, 8, 17 and 24.', 'Look aloud: “This shows… along the bottom is…”', 'See aloud: point at two or three things. Imagine aloud: say what it implies.', 'Show: “So this is what it means.”'] },
+    { n: 4, name: 'First 60 seconds by heart', src: 'Berkun', min: 3, why: 'Nerves peak at the start. A memorised opening carries you until the adrenaline settles.', steps: ['Stand at your start mark.', 'Give slides 1–3 word for word, three times.', 'Reach “10 December 1996” within 20 seconds.'] },
+    { n: 5, name: 'The golf-ball moment', src: 'Gallo', min: 2, why: 'One planned, surprising moment is what people remember and repeat.', steps: ['Keep the ball in a pocket you can reach without looking.', 'Take it out before you speak, hold it at shoulder height, and count three seconds of silence.', 'Deliver the line, then put the ball where everyone can still see it.'] },
+    { n: 6, name: 'Power sphere', src: 'Gallo', min: 3, why: 'Gestures between eye level and navel read as energy; hands below the waist read as low energy.', steps: ['Record your first five minutes.', 'List every movement that has no purpose (swaying, pen clicking).', 'Re-run: gestures in the power sphere, feet still except when you change section.'] },
+    { n: 7, name: 'One sentence, one person', src: 'Berkun', min: 3, why: 'Eye contact is the test of whether you have the room. Give each thought to one person.', steps: ['Put five objects around the room as “faces”.', 'Deliver slide 26 and give each sentence to a different face.', 'Never look at the floor or the ceiling between them.'] },
+  ];
+  $('drillGrid').innerHTML = DRILLS.map((d) => `
+    <article class="panel drill" id="drill${d.n}">
+      <header><h3>${d.n}. ${esc(d.name)}</h3><span class="src">${esc(d.src)}</span></header>
+      <p class="why">${esc(d.why)}</p>
+      <ol>${d.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
+      <div class="foot"><span class="dtime" id="dt${d.n}">${d.min}:00</span><button class="btn" type="button" data-drill="${d.n}">Start ${d.min}-minute timer</button></div>
+    </article>`).join('');
+  let drillTimer = null;
+  document.querySelectorAll('[data-drill]').forEach((b) => b.addEventListener('click', () => {
+    const d = DRILLS.find((x) => x.n === +b.dataset.drill);
+    if (drillTimer) { clearInterval(drillTimer.id); document.querySelector(`[data-drill="${drillTimer.n}"]`).textContent = `Start ${DRILLS.find((x) => x.n === drillTimer.n).min}-minute timer`; if (drillTimer.n === d.n) { drillTimer = null; return; } }
+    const end = Date.now() + d.min * 60000;
+    b.textContent = 'Stop';
+    drillTimer = { n: d.n, id: setInterval(() => {
+      const left = (end - Date.now()) / 1000;
+      $('dt' + d.n).textContent = fmt(left);
+      if (left <= 0) { clearInterval(drillTimer.id); drillTimer = null; b.textContent = 'Done. Go again'; $('drill' + d.n).classList.add('done'); $('dt' + d.n).textContent = '0:00'; }
+    }, 250) };
+  }));
+
+  const QA = [
+    ['Why do the deep perforating arteries bleed and not the big ones?', 'They branch at right angles off large, high-pressure arteries, so they get little pressure buffering. Years of hypertension leave a thick but brittle wall.'],
+    ['Are Charcot–Bouchard microaneurysms real?', 'They were described in 1868, but later work suggests some were artefacts. Their exact role in rupture is still debated, which is why the slide says so.'],
+    ['How do you confirm amyloid angiopathy?', 'Definite CAA needs pathology. In life we use the Boston criteria on MRI: lobar microbleeds and cortical superficial siderosis. Version 2.0 (2022) added white-matter markers.'],
+    ['Why are anticoagulant bleeds so bad?', 'The blood cannot clot well, so the haematoma keeps growing for longer. In SMASH-U they were the largest bleeds, and 54% of those patients were dead at three months.'],
+    ['Isn’t lowering blood pressure risky for the tissue around the clot?', 'PET showed the rim is resting, not starving. In ICH ADAPT, lowering systolic pressure below 150 did not reduce flow around the clot.'],
+    ['What is the spot sign?', 'Contrast leaking into the clot on CT angiography, which means the bleed is still active. It predicts growth.'],
+    ['How is haemorrhagic transformation different from primary ICH?', 'In haemorrhagic transformation the infarct comes first and the damaged tissue bleeds, often after reperfusion. In primary ICH a diseased small vessel ruptures.'],
+    ['Why do some patients get worse on day three to five?', 'Oedema is still building, red cells are releasing iron, and hydrocephalus can develop. Pneumonia and seizures play a part too.'],
+    ['Is there a drug for the secondary injury yet?', 'Not yet. Many worked in animals, but the i-DEF trial of the iron chelator deferoxamine (2019) showed no meaningful benefit at 90 days.'],
+    ['When should rehabilitation start?', 'Follow the medical team’s parameters, and be most watchful in the first 24 to 72 hours. In AVERT, very early high-dose mobilisation within 24 hours reduced good outcomes. Once the patient is stable, use short, frequent sessions with a neuro check first.'],
+    ['Is ICH more common in some settings?', 'Yes. Worldwide it is about 28% of strokes, and incidence is highest in lower-middle-income countries. Uncontrolled hypertension is the main driver.'],
+    ['Something you do not know the answer to.', 'Say: “Good question. I don’t want to guess. I’ll check and come back to you.” That builds trust.'],
+  ];
+  let qaTimer = null, qaOrder = [], qaPos = -1;
+  function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  $('qaNext').addEventListener('click', () => {
+    if (!qaOrder.length || qaPos >= qaOrder.length - 1) { qaOrder = shuffle(QA.map((_, i) => i)); qaPos = -1; }
+    qaPos += 1;
+    const [q, a] = QA[qaOrder[qaPos]];
+    $('qaQ').textContent = q; $('qaAText').textContent = a; $('qaA').hidden = false; $('qaA').open = false;
+    clearInterval(qaTimer);
+    const end = Date.now() + 30000;
+    qaTimer = setInterval(() => { const left = (end - Date.now()) / 1000; $('qaClock').textContent = fmt(left); if (left <= 0) { clearInterval(qaTimer); $('qaA').open = true; } }, 200);
+  });
+  $('qaStop').addEventListener('click', () => { clearInterval(qaTimer); $('qaClock').textContent = '0:30'; });
+
+  // ---------- transcript analysis ----------
+  const EXAMPLE = 'Um, so, here is why it matters. Forty percent. That is how many people die within a month of an intracerebral haemorrhage. And, you know, that number did not move between 1980 and 2008. In the same years, treatment for ischaemic stroke was, um, basically transformed. For bleeds, outcomes stood still. So part of the problem is how we think about a bleed. We sort of treat it as one moment. The vessel bursts, the damage is done, and we wait. Chapter 5 gives us a different view. ICH is a process, not a moment. It unfolds in three stages. The vessel decides where it bleeds. The first hours decide how big it gets. And over the following days, the blood itself keeps injuring the brain.';
+  const FILLERS = [['um', /\b(um+|uh+|erm+|er|ah+)\b/gi], ['you know', /\byou know\b/gi], ['basically', /\bbasically\b/gi], ['actually', /\bactually\b/gi], ['sort of / kind of', /\b(sort of|kind of)\b/gi], ['I mean', /\bI mean\b/gi], ['like (check)', /\blike\b/gi]];
+  function parseDur(v) { const m = String(v).trim().match(/^(\d+)(?::(\d{1,2}))?$/); if (!m) return 0; return m[2] !== undefined ? +m[1] * 60 + +m[2] : +m[1] * 60; }
+  let lastT = null;
+  function analyse(text, dur) {
+    const clean = text.replace(/\s+/g, ' ').trim();
+    const words = clean ? clean.split(' ').filter((w) => /[a-z0-9]/i.test(w)).length : 0;
+    const sents = clean.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length);
+    const lens = sents.map((s) => s.split(' ').filter((w) => /[a-z0-9]/i.test(w)).length);
+    const fill = FILLERS.map(([k, re]) => [k, (clean.match(re) || []).length]).filter(([, c]) => c > 0);
+    const startsSo = sents.filter((s) => /^(so|and|but)\b/i.test(s.trim())).length;
+    const fillCount = fill.reduce((a, [k, c]) => a + (k === 'like (check)' ? 0 : c), 0);
+    const mins = dur / 60;
+    const tri = {}; const toks = clean.toLowerCase().replace(/[^a-z0-9' ]/g, '').split(' ');
+    for (let i = 0; i + 2 < toks.length; i++) { const k = toks.slice(i, i + 3).join(' '); tri[k] = (tri[k] || 0) + 1; }
+    const repeats = Object.entries(tri).filter(([, c]) => c > 1).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    return { words, dur, wpm: mins ? words / mins : 0, fill, fillCount, perMin: mins ? fillCount / mins : 0, sents: sents.length, avg: lens.length ? lens.reduce((a, b) => a + b, 0) / lens.length : 0, longest: lens.length ? Math.max(...lens) : 0, startsSo, repeats };
+  }
+  function renderAnalysis(r, isExample) {
+    lastT = r;
+    $('tLabel').textContent = isExample ? 'Example analysis' : 'Your analysis';
+    const band = (ok, good, bad) => `<span class="band ${ok ? 'ok' : 'late'}">${ok ? good : bad}</span>`;
+    $('tMetrics').innerHTML = [
+      [Math.round(r.wpm), 'words per minute', band(r.wpm >= 120 && r.wpm <= 165, 'in the 120–165 range', r.wpm < 120 ? 'slow: tighten pauses between ideas' : 'fast: pause after each number')],
+      [r.perMin.toFixed(1), 'fillers per minute', band(r.perMin < 2, 'under 2: clean', 'aim under 2: pause instead')],
+      [r.avg.toFixed(0), 'words per sentence', band(r.avg <= 18, 'spoken rhythm', 'split long sentences')],
+      [r.longest, 'longest sentence', band(r.longest <= 30, 'no run-ons', 'break it in two')],
+    ].map(([b, s, x]) => `<div class="metric"><b>${esc(b)}</b><span class="muted">${esc(s)}</span>${x}</div>`).join('');
+    const hints = [];
+    if (r.fill.length) hints.push('Fillers heard: ' + r.fill.map(([k, c]) => `${k} ×${c}`).join(', ') + '. Count “like” only when it is a filler.');
+    if (r.startsSo) hints.push(`${r.startsSo} sentence${r.startsSo > 1 ? 's' : ''} start with “so”, “and” or “but”. Start on the point instead.`);
+    if (r.repeats.length) hints.push('Repeated phrases: ' + r.repeats.map(([k, c]) => `“${k}” ×${c}`).join(', ') + '.');
+    hints.push(`${r.words} words in ${fmt(r.dur)}. The full talk script runs about 2,000 spoken words in 17 minutes.`);
+    $('tHints').innerHTML = hints.map((h) => `<li>${esc(h)}</li>`).join('');
+  }
+  $('tText').value = EXAMPLE;
+  renderAnalysis(analyse(EXAMPLE, parseDur('1:10')), true);
+  $('tText').addEventListener('input', () => { $('exampleBar').hidden = true; });
+  $('tForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const dur = parseDur($('tDur').value);
+    if (!dur) { $('tNote').textContent = 'Enter the duration as minutes:seconds, for example 2:30.'; return; }
+    $('tNote').textContent = '';
+    renderAnalysis(analyse($('tText').value, dur), $('tText').value === EXAMPLE);
+  });
+
+  // ---------- capabilities: db (log) and sample (coaching) ----------
+  let db = null, sample = null, runs = [], checks = [];
+  const COACH_RULES = `You are a public-speaking coach for a clinician rehearsing a 17-minute chapter review talk. Coach from their own knowledge base: open with a story and reach the point within 60 seconds (Berkun); one idea per slide; replace "um" with a pause (silence is power); stress one key word per sentence (voice as a highlighter); narrate picture slides with look, see, imagine, show (Roam); gestures in the power sphere and one sentence per person for eye contact (Gallo, Berkun); one planned jaw-dropping moment (the golf ball); soft breaks every 10 minutes; end early and leave time for questions; rehearse out loud, standing, timed, recorded.
+The talk: "When the vessel breaks", Chapter 5 of the Oxford Textbook of Stroke (pathophysiology of non-traumatic intracerebral haemorrhage). Big idea: ICH is a process, not a moment. Three messages: the vessel decides where it bleeds; the first hours decide how big it gets; the blood keeps injuring the brain for days. Story thread: Jill Bolte Taylor's AVM bleed in 1996. Sections and targets: Opening 2:55, 01 Vessel 5:00, 02 Hours 3:50, 03 Days 2:55, 04 Bedside 2:35.
+Drills available: 1 Pause, don't um; 2 Stress one word; 3 Talk through the picture; 4 First 60 seconds by heart; 5 The golf-ball moment; 6 Power sphere; 7 One sentence, one person; 8 Q&A fire drill.
+Write in plain UK English, warm and direct, no headings, no emoji, under 200 words: two specific things that went well, then three fixes (each naming a slide number or section and one drill by number), then one sentence starting "Next run:" with the single change to make.`;
+  function copyFor(code) {
+    return ({ not_granted: 'Coaching is off because the request was declined. Reload the page to be asked again.', rate_limited: 'Too many requests just now. Wait a minute, then try again.', cancelled: 'Stopped.' })[code] || 'Coaching is not available right now. Your numbers above still stand.';
+  }
+  async function coach(btn, out, prompt) {
+    btn.disabled = true; out.hidden = false; out.textContent = 'Thinking…';
+    try {
+      const { text, truncated } = await sample(prompt, { onText: ({ text }) => { out.textContent = text; } });
+      out.textContent = text + (truncated ? '\n\n(Cut short. Ask again for the rest.)' : '');
+      return text;
+    } catch (e) {
+      out.textContent = (e && e.text ? e.text + '\n\n' : '') + copyFor(e && e.code);
+      if (e && e.code === 'not_granted') { $('coachRun').hidden = true; $('coachT').hidden = true; }
+      return null;
+    } finally { btn.disabled = false; }
+  }
+  $('coachRun').addEventListener('click', async () => {
+    const st = runStats();
+    const prompt = COACH_RULES + `\n\nRUN DATA\nTotal ${fmt(st.total)} against a target of ${fmt(TARGET)}.\nBy section: ${st.acts.map((a) => `${a.name} ${fmt(a.actual)} (target ${fmt(a.target)})`).join('; ')}.\nSlides well over target: ${st.slow.map((s) => `slide ${s.n} "${s.title}" +${fmt(s.over)}`).join('; ') || 'none'}.\nFillers counted by tapping: ${run.fill.um} um/uh, ${run.fill.so} so/like/you know, ${run.fill.other} other; ${st.perMin.toFixed(1)} per minute.\nRun type: ${$('runMode').selectedOptions[0].text}. Confidence ${$('confidence').value}/5.\nWhat went well (their words): ${$('wentWell').value || '(blank)'}\nTheir planned change: ${$('oneChange').value || '(blank)'}`;
+    const text = await coach($('coachRun'), $('runCoach'), prompt);
+    if (text && lastRunRef) { try { await lastRunRef.update({ coaching: text.slice(0, 4000) }); } catch (e) {} }
+  });
+  $('coachT').addEventListener('click', async () => {
+    const r = lastT || analyse($('tText').value, parseDur($('tDur').value));
+    const prompt = COACH_RULES + `\n\nTRANSCRIPT CHECK (${$('tPart').value}, ${fmt(r.dur)})\nMetrics: ${Math.round(r.wpm)} words per minute; ${r.perMin.toFixed(1)} fillers per minute (${r.fill.map(([k, c]) => `${k} x${c}`).join(', ') || 'none'}); average sentence ${r.avg.toFixed(0)} words; longest ${r.longest}.\nComment on pace, fillers, sentence shape, whether the key messages come through, and wording to sharpen. Quote at most two short phrases from the transcript.\n\nTRANSCRIPT\n` + $('tText').value.slice(0, 12000);
+    await coach($('coachT'), $('tCoach'), prompt);
+  });
+
+  let lastRunRef = null;
+  $('reflect').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!db) { $('saveNote').textContent = 'Saving is not available in this view. Note your numbers before you close the page.'; return; }
+    const st = runStats();
+    const body = {
+      createdAt: new Date().toISOString(), example: false, mode: $('runMode').value,
+      totalSec: Math.round(st.total), targetSec: TARGET, perSlideSec: st.secs.map((s) => Math.round(s)),
+      acts: st.acts.map((a) => ({ name: a.name, actualSec: Math.round(a.actual), targetSec: a.target })),
+      fillers: { ...run.fill }, fillersPerMin: +st.perMin.toFixed(2), confidence: +$('confidence').value,
+      wentWell: $('wentWell').value.slice(0, 1000), oneChange: $('oneChange').value.slice(0, 1000),
+    };
+    $('saveRun').disabled = true; $('saveNote').textContent = 'Saving…';
+    try { lastRunRef = await db.collection('runs').add(body); $('saveNote').textContent = 'Saved to your log.'; }
+    catch (err) { $('saveRun').disabled = false; $('saveNote').textContent = err && err.code === 'quota_exceeded' ? 'Your log is full. Delete some old runs on the Log tab.' : 'Could not save just now. Try again in a moment.'; }
+  });
+  $('saveT').addEventListener('click', async () => {
+    if (!db) { $('tNote').textContent = 'Saving is not available in this view.'; return; }
+    const r = lastT || analyse($('tText').value, parseDur($('tDur').value));
+    if ($('tText').value === EXAMPLE) { $('tNote').textContent = 'Paste your own transcript first. The example is not saved.'; return; }
+    try {
+      await db.collection('checks').add({ createdAt: new Date().toISOString(), part: $('tPart').value, durationSec: r.dur, words: r.words, wpm: Math.round(r.wpm), fillersPerMin: +r.perMin.toFixed(2), avgSentence: +r.avg.toFixed(1), transcript: $('tText').value.slice(0, 20000), coaching: $('tCoach').hidden ? '' : $('tCoach').textContent.slice(0, 4000) });
+      $('tNote').textContent = 'Saved to your log.';
+    } catch (err) { $('tNote').textContent = 'Could not save just now. Try again in a moment.'; }
+  });
+
+  function renderLog() {
+    $('runCount').textContent = String(runs.filter((r) => !r.example).length);
+    if (!runs.length) { $('logBody').innerHTML = '<div class="empty">Your saved runs appear here. Finish a run on the Rehearse tab and press “Save run to log”.</div>'; }
+    else {
+      $('logBody').innerHTML = '<div class="tablewrap"><table><tr><th>When</th><th class="num">Total</th><th class="num">vs target</th><th class="num">Fillers/min</th><th class="num">Confidence</th><th>Next change</th><th></th></tr>' +
+        runs.map((r, i) => {
+          const d = new Date(r.createdAt), diff = (r.totalSec || 0) - (r.targetSec || TARGET);
+          const prev = runs[i + 1];
+          const trend = prev && typeof prev.fillersPerMin === 'number' ? (r.fillersPerMin < prev.fillersPerMin ? ' ↓' : r.fillersPerMin > prev.fillersPerMin ? ' ↑' : '') : '';
+          return `<tr><td>${r.example ? '<span class="tag ex">Example</span> ' : ''}${esc(d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' }))} ${esc(d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }))}</td><td class="num">${fmt(r.totalSec || 0)}</td><td class="num"><span class="tag ${Math.abs(diff) < 30 || diff < 0 ? 'ok' : 'late'}">${diff >= 0 ? '+' : '−'}${fmt(Math.abs(diff))}</span></td><td class="num">${(r.fillersPerMin ?? 0).toFixed(1)}${trend}</td><td class="num">${r.confidence ?? '–'}/5</td><td style="white-space:normal;min-width:180px">${esc(r.oneChange || '')}</td><td><button class="btn ghost" type="button" data-del="${esc(r.id)}" style="padding:6px 10px">Delete</button></td></tr>`;
+        }).join('') + '</table></div>';
+      document.querySelectorAll('[data-del]').forEach((b) => b.addEventListener('click', () => confirmDelete(b)));
+    }
+    if (!checks.length) $('tLogBody').innerHTML = '<div class="empty">Saved transcript checks appear here.</div>';
+    else $('tLogBody').innerHTML = '<div class="tablewrap"><table><tr><th>When</th><th>Part</th><th class="num">Words/min</th><th class="num">Fillers/min</th><th class="num">Avg sentence</th></tr>' +
+      checks.map((c) => `<tr><td>${esc(new Date(c.createdAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' }))}</td><td>${esc(c.part || '')}</td><td class="num">${c.wpm ?? '–'}</td><td class="num">${(c.fillersPerMin ?? 0).toFixed(1)}</td><td class="num">${c.avgSentence ?? '–'}</td></tr>`).join('') + '</table></div>';
+  }
+  function confirmDelete(b) {
+    if (b.dataset.armed) { db.collection('runs').doc(b.dataset.del).delete().catch(() => { $('logNote').textContent = 'Could not delete just now.'; }); return; }
+    b.dataset.armed = '1'; b.textContent = 'Confirm delete';
+    setTimeout(() => { if (b.isConnected) { delete b.dataset.armed; b.textContent = 'Delete'; } }, 4000);
+  }
+
+  (async () => {
+    const [d, s] = await Promise.all([window.claude?.use?.('db') ?? null, window.claude?.use?.('sample') ?? null].map((p) => Promise.resolve(p).catch(() => null)));
+    db = d; sample = s;
+    if (sample) { $('coachRun').hidden = false; $('coachT').hidden = false; }
+    if (!db) { $('logNote').textContent = 'Saving is not available in this view. Runs stay on screen until you close the page.'; renderLog(); return; }
+    $('logNote').textContent = 'Newest first';
+    db.collection('runs').orderBy('createdAt', 'desc').limit(200).onSnapshot((snap) => { runs = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })); renderLog(); }, () => { $('logNote').textContent = 'Your log could not load. Reload the page to try again.'; });
+    db.collection('checks').orderBy('createdAt', 'desc').limit(100).onSnapshot((snap) => { checks = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })); renderLog(); }, () => {});
+  })();
+})();
+</script>
