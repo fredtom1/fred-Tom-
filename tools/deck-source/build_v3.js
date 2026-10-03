@@ -9,6 +9,7 @@ const JSZip = require('jszip');
 const fs = require('fs');
 const { iconPng, brainSVG, svgToPng, lobarDots, deepDots } = require('./assets');
 const NOTES = require('./notes_v3');
+const REFS = require('./refs');
 
 const OUT = process.argv[2] || 'deck_v3.pptx';
 
@@ -134,9 +135,11 @@ function sTitle() {
   T(s, 'When the vessel breaks', { x: 0.8, y: 1.85, w: 6.4, h: 2.1, fontFace: FH, fontSize: 60, bold: true, color: C.WHITE });
   T(s, 'Pathophysiology of non-traumatic intracerebral haemorrhage', { x: 0.8, y: 4.0, w: 6.0, h: 0.95, fontSize: 24, color: C.ON_DARK });
   T(s, [
-    { text: 'Oxford Textbook of Stroke & Cerebrovascular Disease, OUP 2014', options: { breakLine: true } },
-    { text: 'Chapter authors: Constanza Rossi & Charlotte Cordonnier' },
-  ], { x: 0.8, y: 5.35, w: 6.4, h: 0.8, fontSize: 14, color: C.ON_DARK_MUTED, paraSpaceAfter: 4 });
+    { text: 'Chapter 5: Rossi and Cordonnier (2014), pp. 51–60', options: { breakLine: true } },
+    { text: 'In B. Norrving (Ed.), ' },
+    { text: 'Oxford textbook of stroke and cerebrovascular disease', options: { italic: true } },
+    { text: '. Oxford University Press.' },
+  ], { x: 0.8, y: 5.3, w: 6.4, h: 0.85, fontSize: 14, color: C.ON_DARK_MUTED, paraSpaceAfter: 4 });
 }
 
 function hookBase(s, key) {
@@ -148,7 +151,7 @@ function sHook1() {
   hookBase(s);
   T(s, '“I woke up to a pounding pain behind my left eye.”', { x: 0.8, y: 3.3, w: 7.4, h: 1.6, fontFace: FH, fontSize: 32, italic: true, color: C.WHITE, objectName: '!!quote' });
   motif(s, 10.7, 3.75, 0.45, [], 4.4);
-  source(s, 'Source: Jill Bolte Taylor, "My stroke of insight", TED 2008.', true);
+  source(s, 'Source: Taylor (2008a).', true);
 }
 function sHook2() {
   const s = newSlide('Opening', 'hook2', { bg: C.INK, morph: true });
@@ -158,7 +161,7 @@ function sHook2() {
     { text: 'walk, talk, read or write.', options: { bold: true, color: C.RED_ON_DARK } },
   ], { x: 0.8, y: 3.3, w: 7.4, h: 1.6, fontFace: FH, fontSize: 32, color: C.WHITE, objectName: '!!line2' });
   motif(s, 10.7, 3.75, 2.2, [[3.4, 82]], 4.4);
-  source(s, 'Source: Jill Bolte Taylor, "My stroke of insight", TED 2008.', true);
+  source(s, 'Source: Taylor (2008a).', true);
 }
 
 function sStat() {
@@ -168,7 +171,7 @@ function sStat() {
   T(s, '40%', { x: MX, y: 1.45, w: 6.4, h: 3.0, fontFace: FH, fontSize: 200, bold: true, color: C.RED, valign: 'middle' });
   T(s, 'die within a month of an intracerebral haemorrhage', { x: 7.0, y: 2.1, w: 5.7, h: 1.6, fontSize: 32, bold: true, color: C.INK, valign: 'middle' });
   T(s, 'No improvement from 1980 to 2008.', { x: 7.0, y: 3.8, w: 5.7, h: 0.6, fontSize: 24, color: C.SLATE, valign: 'middle' });
-  source(s, 'van Asch et al., Lancet Neurol 2010 (36 population studies, 8145 patients): median 1-month case fatality 40.4%.');
+  source(s, 'Median 1-month case fatality 40.4%; 36 population studies, n = 8145 (van Asch et al., 2010).');
   footer(s, 0);
 }
 
@@ -188,6 +191,7 @@ function sBigIdea() {
     T(s, t, { x, y: 4.85, w: colW, h: 0.6, fontSize: 28, bold: true, color: C.INK });
   });
   T(s, 'Each stage is a window to act.', { x: x0, y: 5.6, w: 10, h: 0.55, fontSize: 24, color: C.SLATE });
+  source(s, 'Framework adapted from Rossi and Cordonnier (2014).');
   footer(s, 0);
 }
 
@@ -240,7 +244,7 @@ function sSmashU() {
   card(s, x, 2.0, w, 4.3, C.BLUSH);
   T(s, '55%', { x: x + 0.35, y: 2.85, w: w - 0.7, h: 1.4, fontFace: FH, fontSize: 80, bold: true, color: C.RED, valign: 'middle' });
   T(s, 'two small-vessel diseases', { x: x + 0.35, y: 4.3, w: w - 0.7, h: 1.1, fontSize: 26, bold: true, color: C.RED_D });
-  source(s, 'SMASH-U: Meretoja et al., Stroke 2012 (n = 1013, Helsinki). Full breakdown on the handout.');
+  source(s, 'SMASH-U classification, n = 1013, Helsinki (Meretoja et al., 2012). Full breakdown on the handout.');
   footer(s, 1);
 }
 
@@ -281,6 +285,7 @@ function sVessels() {
     T(s, h, { x: x + 0.35, y: 4.6, w: w - 0.7, h: 0.55, fontSize: 26, bold: true, color: i === 0 ? C.SLATE : C.INK });
     T(s, t, { x: x + 0.35, y: 5.2, w: w - 0.6, h: 0.95, fontSize: 20 });
   });
+  source(s, 'Hypertensive arteriopathy (Fisher, 1971); amyloid angiopathy (Rossi & Cordonnier, 2014).');
   footer(s, 1);
 }
 
@@ -301,7 +306,7 @@ function mapSlide(key, withLobar) {
     T(s, '→ amyloid (older adults)', { x: x + 3.0, y: 4.35, w: 4.2, h: 0.8, fontSize: 26, bold: true, color: C.RED_D, valign: 'middle' });
     T(s, 'Young or atypical? Look for a lesion.', { x: x + 0.4, y: 5.25, w: 6.5, h: 0.6, fontSize: 20, color: C.RED_D, valign: 'middle' });
   }
-  source(s, 'Schematic axial slice. The pons and cerebellum sit below this level.');
+  source(s, 'Schematic axial slice; the pons and cerebellum sit below this level. Deep vs lobar patterns (Macellari et al., 2014; Meretoja et al., 2012).');
   footer(s, 1);
 }
 
@@ -323,6 +328,7 @@ function sLocation() {
     T(s, loc, { x: MX + 0.35, y, w: 3.75, h: 0.8, fontSize: 22, bold: true, color: hi ? C.RED_D : C.INK, valign: 'middle' });
     T(s, txt, { x: MX + 4.2, y, w: CW - 4.45, h: 0.8, fontSize: 20, valign: 'middle' });
   });
+  source(s, 'PLIC involvement and motor outcome (Gupta et al., 2025; Murray et al., 2025; Puig et al., 2019).');
   footer(s, 1);
 }
 
@@ -341,7 +347,7 @@ function sMicrobleeds() {
   T(s, '60%', { x: x + 0.4, y: 2.4, w: w - 0.8, h: 1.5, fontFace: FH, fontSize: 88, bold: true, color: C.RED, valign: 'middle' });
   T(s, 'of people with ICH have microbleeds on MRI', { x: x + 0.4, y: 3.95, w: w - 0.8, h: 1.1, fontSize: 24, bold: true, color: C.INK });
   T(s, 'Healthy adults: 5%', { x: x + 0.4, y: 5.25, w: w - 0.8, h: 0.5, fontSize: 20, color: C.SLATE });
-  source(s, 'Cordonnier, Al-Shahi Salman & Wardlaw, Brain 2007 (systematic review). Boston criteria on the handout.');
+  source(s, 'Systematic review (Cordonnier et al., 2007). Boston criteria on the handout (Knudsen et al., 2001).');
   footer(s, 1);
 }
 
@@ -361,6 +367,7 @@ function sCase1() {
   const w = (CW - 0.6) / 3;
   chips(s, [0, 1, 2].map((i) => [MX + i * (w + 0.3), 2.45, w]));
   T(s, '?', { x: MX, y: 3.75, w: CW, h: 2.4, fontFace: FH, fontSize: 150, bold: true, color: C.GRID, align: 'center', valign: 'middle' });
+  source(s, 'Case details: Taylor (2008b).');
   footer(s, 1);
 }
 function sCase2() {
@@ -378,7 +385,7 @@ function sCase2() {
   card(s, x2, 3.25, cw, 3.05, C.MIST2);
   T(s, '0%', { x: x2 + 0.4, y: 3.45, w: cw - 0.8, h: 1.3, fontFace: FH, fontSize: 80, bold: true, color: C.INK, valign: 'middle' });
   T(s, 'if over 45, hypertensive, with a deep bleed', { x: x2 + 0.4, y: 4.8, w: cw - 0.8, h: 1.2, fontSize: 24, bold: true, color: C.INK });
-  source(s, 'Zhu et al., Stroke 1997 (prospective; 206 patients, all had catheter angiography). Other secondary causes on the handout.');
+  source(s, 'Prospective; 206 patients, all had catheter angiography (Zhu et al., 1997). Other secondary causes on the handout.');
   footer(s, 1);
 }
 
@@ -415,7 +422,7 @@ function sAvalanche() {
     badge(s, i + 1, x, 5.45, 0.56, C.RED, 20);
     T(s, hd, { x: x + 0.7, y: 5.45, w: w - 0.7, h: 0.56, fontSize: 26, bold: true, color: C.INK, valign: 'middle' });
   });
-  source(s, 'Fisher CM, J Neuropathol Exp Neurol 1971: secondary bleeding points at the edge of the haematoma.');
+  source(s, 'Secondary bleeding points at the edge of the haematoma (Fisher, 1971).');
   footer(s, 2);
 }
 
@@ -459,7 +466,7 @@ function sReveal() {
     { text: 'Jill: four hours', options: { bold: true, color: C.WHITE, breakLine: true } },
     { text: 'from headache to losing her speech', options: { color: C.ON_DARK } },
   ], { x: x + 0.4, y: 4.45, w: w - 0.8, h: 1.85, fontSize: 24, valign: 'middle' });
-  source(s, 'Brott et al., Stroke 1997 (n = 103; growth > 33%). Every 10% of growth: +5% hazard of death (Davis et al., Neurology 2006).');
+  source(s, 'Growth > 33%, n = 103 (Brott et al., 1997). Every 10% of growth: +5% hazard of death (Davis et al., 2006).');
   footer(s, 2);
 }
 
@@ -495,7 +502,7 @@ function sGolf() {
   ], { x, y: 3.1, w, h: 1.1, fontSize: 26 });
   card(s, x, 4.5, w, 1.75, C.INK_2);
   T(s, 'A clot that grows by a third looks only 10% wider on a scan.', { x: x + 0.4, y: 4.5, w: w - 0.8, h: 1.75, fontSize: 26, bold: true, color: C.WHITE, valign: 'middle' });
-  source(s, 'Volume: Broderick et al., Stroke 1993 (Cincinnati, n = 188). A regulation golf ball is 42.7 mm across (about 40.7 mL).', true);
+  source(s, 'Volume and 30-day mortality, n = 188 (Broderick et al., 1993). Clot size (Taylor, 2008b). A golf ball is 42.7 mm across (about 40.7 mL).', true);
   footer(s, 2, true);
 }
 
@@ -519,7 +526,7 @@ function sMass() {
   T(s, '≈45%', { x: x + 0.4, y: 2.35, w: w - 0.8, h: 1.4, fontFace: FH, fontSize: 72, bold: true, color: C.INK, valign: 'middle' });
   T(s, 'break into the ventricles', { x: x + 0.4, y: 3.8, w: w - 0.8, h: 0.95, fontSize: 24, bold: true, color: C.INK });
   T(s, '→ hydrocephalus, worse outcome', { x: x + 0.4, y: 4.6, w: w - 0.8, h: 0.95, fontSize: 20, color: C.SLATE });
-  source(s, 'Hanley, Stroke 2009.');
+  source(s, 'Intraventricular extension and outcome (Hanley, 2009).');
   footer(s, 2);
 }
 
@@ -542,7 +549,7 @@ function sTimeline() {
   T(s, [{ text: '+75% ', options: { bold: true, color: C.RED, fontSize: 36, fontFace: FH } }, { text: 'oedema in the first 24 hours', options: { bold: true, color: C.RED_D } }], { x: MX + 0.35, y: 5.0, w: 6.8, h: 1.3, fontSize: 22, valign: 'middle' });
   card(s, MX + 7.6, 5.0, CW - 7.6, 1.3, C.INK);
   T(s, 'Jill: surgery 17 days later', { x: MX + 7.95, y: 5.0, w: CW - 8.3, h: 1.3, fontSize: 22, bold: true, color: C.WHITE, valign: 'middle' });
-  source(s, 'Xi, Keep & Hoff, Lancet Neurol 2006; Gebel et al., Stroke 2002.');
+  source(s, 'Oedema mechanisms (Xi et al., 2006); +75% in 24 h (Gebel et al., 2002); timing of Jill\'s surgery (Taylor, 2008b).');
   footer(s, 3);
 }
 
@@ -561,7 +568,7 @@ function sCascade() {
   });
   card(s, MX, 5.1, CW, 1.2, C.INK);
   T(s, 'Leaky barrier   →   more oedema   →   neuronal death', { x: MX, y: 5.1, w: CW, h: 1.2, fontSize: 30, bold: true, color: C.WHITE, align: 'center', valign: 'middle' });
-  source(s, 'Xi, Keep & Hoff, Lancet Neurol 2006. The deferoxamine trial i-DEF (Selim, Lancet Neurol 2019) was neutral.');
+  source(s, 'Mechanisms (Xi et al., 2006). The deferoxamine trial i-DEF was neutral (Selim et al., 2019).');
   footer(s, 3);
 }
 
@@ -595,7 +602,7 @@ function sMyth2() {
     valGridLine: { style: 'none' }, catGridLine: { style: 'none' },
     showLegend: true, legendPos: 'b', legendFontFace: FB, legendFontSize: 16, legendColor: C.TEXT,
   });
-  source(s, 'Zazulia et al., J Cereb Blood Flow Metab 2001 (n = 19, 5–22 h after onset); Butcher et al., Stroke 2013.');
+  source(s, 'PET, n = 19, 5–22 h after onset (Zazulia et al., 2001); ICH ADAPT randomised trial, n = 75 (Butcher et al., 2013).');
   footer(s, 3);
 }
 
@@ -606,9 +613,9 @@ function sTiming() {
   title(s, 'Early helps; very early and intense may not');
   const x0 = 0.9, x1 = 12.2, hx = (h) => x0 + ((x1 - x0) * h) / 72;
   const rows = [
-    ['AVERT 2015  ·  RCT  ·  n = 2104  ·  infarcts and bleeds', 'High dose within 24 h: fewer good outcomes (46% vs 50%)', 0, 24, C.RED],
-    ['Liu 2014  ·  RCT  ·  n = 243  ·  ICH', 'Rehab started within 48 h: better MBI, fewer deaths', 0, 48, C.SLATE],
-    ['Yen 2019  ·  RCT  ·  n = 60  ·  mild to moderate ICH', 'Out of bed at 24–72 h: better FIM-motor and walking', 24, 72, C.INK],
+    ['AVERT Trial Collaboration Group (2015)  ·  RCT  ·  n = 2104  ·  infarcts and bleeds', 'High dose within 24 h: fewer good outcomes (46% vs 50%)', 0, 24, C.RED],
+    ['Liu et al. (2014)  ·  RCT  ·  n = 243  ·  ICH', 'Rehab started within 48 h: better MBI, fewer deaths', 0, 48, C.SLATE],
+    ['Yen et al. (2020)  ·  RCT  ·  n = 60  ·  mild to moderate ICH', 'Out of bed at 24–72 h: better FIM-motor and walking', 24, 72, C.INK],
   ];
   rows.forEach(([who, what, a, b, col], i) => {
     const y = 1.9 + i * 1.03, xa = hx(a);
@@ -623,9 +630,9 @@ function sTiming() {
     T(s, `${h} h`, { x: hx(h) - 0.5, y: ay + 0.12, w: 1.0, h: 0.28, fontSize: 14, bold: true, color: C.MUTED, align: 'center', valign: 'middle' });
   });
   card(s, MX, 5.55, CW, 0.82, C.INK);
-  T(s, [{ text: 'Short and frequent ', options: { bold: true, color: C.WHITE } }, { text: 'did better than long sessions (AVERT dose analysis)', options: { color: C.ON_DARK } }], { x: MX + 0.35, y: 5.55, w: 7.6, h: 0.82, fontSize: 19, valign: 'middle' });
-  T(s, 'Certainty: low (17 RCTs, Kan 2026)', { x: MX + 8.1, y: 5.55, w: CW - 8.35, h: 0.82, fontSize: 18, bold: true, color: C.RED_ON_DARK, align: 'right', valign: 'middle' });
-  source(s, 'Bernhardt, Lancet 2015 and Neurology 2016 · Liu, Stroke 2014 · Yen, Neurorehabil Neural Repair 2019 · Kan, Medicine 2026.');
+  T(s, [{ text: 'Short and frequent ', options: { bold: true, color: C.WHITE } }, { text: 'sessions did better (Bernhardt et al., 2016)', options: { color: C.ON_DARK } }], { x: MX + 0.35, y: 5.55, w: 7.6, h: 0.82, fontSize: 19, valign: 'middle' });
+  T(s, 'Certainty: low (Kan et al., 2026)', { x: MX + 8.1, y: 5.55, w: CW - 8.35, h: 0.82, fontSize: 18, bold: true, color: C.RED_ON_DARK, align: 'right', valign: 'middle' });
+  source(s, 'Kan et al. (2026): 17 RCTs, n = 1396. Blood pressure variability was unchanged with early mobilisation (Yen et al., 2021).');
   footer(s, 4);
 }
 
@@ -656,6 +663,7 @@ function sDay4a() {
     badge(s, l, x + 0.2, y + 0.13, 0.56, C.INK, 20);
     T(s, t, { x: x + 0.95, y, w: ow - 1.05, h: 0.82, fontSize: 21, bold: true, color: C.INK, valign: 'middle' });
   });
+  source(s, 'A composite teaching case, not a real patient.');
   footer(s, 4);
 }
 
@@ -683,7 +691,7 @@ function sDay4b() {
   line(s, c4, ly, c1, ly, C.SLATE, 2);
   line(s, c1, ly, c1, 5.12, C.SLATE, 2, true);
   T(s, 'Repeat before every session', { x: (c1 + c4) / 2 - 2.0, y: ly - 0.22, w: 4.0, h: 0.44, fontSize: 17, bold: true, color: C.SLATE, align: 'center', valign: 'middle', fill: { color: C.WHITE } });
-  source(s, 'Reasoning cycle adapted from Levett-Jones et al., Nurse Educ Today 2010. A fall of 2+ GCS points is a common research definition of deterioration.');
+  source(s, 'Clinical reasoning cycle adapted from Levett-Jones et al. (2010).');
   footer(s, 4);
 }
 
@@ -695,11 +703,11 @@ function sRecovery() {
   const tx = 4.45, tw = 3.75, zc = [tx + tw / 6, tx + tw / 2, tx + (5 * tw) / 6];
   ['ICH worse', 'No difference', 'ICH better'].forEach((l, i) => T(s, l, { x: zc[i] - 0.75, y: 1.92, w: 1.5, h: 0.4, fontSize: 14, bold: true, color: C.MUTED, align: 'center', valign: 'middle' }));
   const rows = [
-    ['Kelly 2003  ·  n = 1064', 'unmatched', 2, 'grey'],
-    ['Paolucci 2003  ·  n = 270', 'matched on the deficit', 2, 'ink'],
-    ['Salvadori 2020  ·  n = 229', 'unmatched', 1, 'grey'],
-    ['Oosterveer 2022  ·  n = 360', 'unmatched', 1, 'grey'],
-    ['Balk 2026  ·  n = 194', 'matched on lesion size and site', 0, 'red'],
+    ['Kelly et al. (2003)', 'n = 1064  ·  unmatched', 2, 'grey'],
+    ['Paolucci et al. (2003)', 'n = 270  ·  matched on the deficit', 2, 'ink'],
+    ['Salvadori et al. (2021)', 'n = 229  ·  unmatched', 1, 'grey'],
+    ['Oosterveer et al. (2022)', 'n = 360  ·  unmatched', 1, 'grey'],
+    ['Balk et al. (2026)', 'n = 194  ·  matched on lesion size, site', 0, 'red'],
   ];
   const ry = (i) => 2.42 + i * 0.78;
   rows.forEach((r, i) => s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: tx, y: ry(i) + 0.12, w: tw, h: 0.46, fill: { color: C.MIST2 }, line: { color: C.MIST2, width: 0.5 }, rectRadius: 0.23 }));
@@ -718,7 +726,7 @@ function sRecovery() {
   T(s, 'MATCH ON THE LESION', { x: x + 0.35, y: 4.58, w: w - 0.7, h: 0.35, fontSize: 13, bold: true, color: C.RED_D, charSpacing: 2, valign: 'middle' });
   T(s, 'ICH looks worse', { x: x + 0.35, y: 4.93, w: w - 0.7, h: 0.55, fontSize: 26, bold: true, color: C.RED, valign: 'middle' });
   T(s, 'The blood itself is toxic.', { x: x + 0.35, y: 5.48, w: w - 0.6, h: 0.75, fontSize: 17, color: C.RED_D });
-  source(s, 'Each dot shows the direction of the main finding, not its size. Full citations on the reference slides.');
+  source(s, 'Each dot shows the direction of the main finding, not its size. Severe early deficit is not a fixed ceiling (Yoo & Chung, 2026).');
   footer(s, 4);
 }
 
@@ -740,6 +748,7 @@ function sWindows() {
     T(s, when, { x: 1.75, y: y + 0.6, w: 3.2, h: 0.32, fontSize: 15, bold: true, color: hot ? C.RED_D : C.SLATE, valign: 'top' });
     T(s, act, { x: 4.95, y, w: 7.6, h: 1.0, fontSize: 21, valign: 'middle' });
   });
+  source(s, '(AVERT Trial Collaboration Group, 2015; Bernhardt et al., 2016; Levett-Jones et al., 2010; Puig et al., 2019; Yoo & Chung, 2026)');
   footer(s, 4);
 }
 
@@ -754,6 +763,7 @@ function sThree() {
     T(s, String(i + 1), { x: MX + 0.5 - d / 2, y: y + 0.5 - d / 2, w: d, h: d, fontSize: 24, bold: true, color: C.WHITE, align: 'center', valign: 'middle' });
     T(s, t, { x: MX + 1.4, y, w: CW - 1.4, h: 1.0, fontFace: FH, fontSize: 34, bold: true, color: C.INK, valign: 'middle' });
   });
+  source(s, 'Adapted from Rossi and Cordonnier (2014).');
   footer(s, 4);
 }
 
@@ -764,67 +774,38 @@ function sClose() {
   T(s, 'Jill walked onto the TED stage holding a human brain.', { x: 0.8, y: 1.7, w: 7.4, h: 1.5, fontSize: 28, color: C.ON_DARK });
   T(s, 'ICH is a process,\nnot a moment.', { x: 0.8, y: 3.3, w: 7.6, h: 1.7, fontFace: FH, fontSize: 48, bold: true, color: C.WHITE });
   T(s, 'Which claim would you challenge?', { x: 0.8, y: 5.4, w: 7.4, h: 0.6, fontSize: 24, color: C.RED_ON_DARK, bold: true });
+  source(s, 'Source: Taylor (2008a, 2008b).', true);
 }
 
+// APA 7 reference list: alphabetical, every author (up to 20), hanging indent (added in post-processing).
+function refRuns(e, last) {
+  const runs = REFS.segments(e).map(({ t, i }) => ({ text: t, options: i ? { italic: true } : {} }));
+  runs[runs.length - 1].options.breakLine = !last;
+  return runs;
+}
 function sRefs() {
-  const s = newSlide('Close', 'refs');
-  kicker(s, 'Sources');
-  title(s, 'References: the chapter story');
-  const refs = [
-    'Rossi C, Cordonnier C. Pathophysiology of non-traumatic intracerebral haemorrhage. In: Norrving B, ed. Oxford Textbook of Stroke and Cerebrovascular Disease. OUP; 2014: ch. 5.',
-    'Taylor JB. My stroke of insight. TED 2008; and My Stroke of Insight (book), 2006.',
-    'van Asch CJ, et al. Lancet Neurol 2010;9:167–176.',
-    'Meretoja A, et al. SMASH-U. Stroke 2012;43:2592–2597.',
-    'Cordonnier C, Al-Shahi Salman R, Wardlaw J. Brain 2007;130:1988–2003.',
-    'Zhu XL, Chan MS, Poon WS. Stroke 1997;28:1406–1409.',
-    'Fisher CM. J Neuropathol Exp Neurol 1971;30:536–550.',
-    'Brott T, et al. Stroke 1997;28:1–5.',
-    'Davis SM, et al. Neurology 2006;66:1175–1181.',
-    'Broderick JP, et al. Stroke 1993;24:987–993.',
-    'Hanley DF. Stroke 2009;40:1533–1538.',
-    'Gebel JM, et al. Stroke 2002;33:2631–2635.',
-    'Xi G, Keep RF, Hoff JT. Lancet Neurol 2006;5:53–63.',
-    'Zazulia AR, et al. J Cereb Blood Flow Metab 2001;21:804–810.',
-    'Butcher KS, et al. (ICH ADAPT). Stroke 2013;44:620–626.',
-  ];
-  const half = Math.ceil(refs.length / 2);
-  [refs.slice(0, half), refs.slice(half)].forEach((col, j) => {
-    T(s, col.map((r, i) => ({ text: `${j * half + i + 1}. ${r}`, options: { breakLine: i < col.length - 1 } })), {
-      x: MX + j * 6.2, y: 1.85, w: 5.9, h: 4.9, fontSize: 13, color: C.TEXT, paraSpaceAfter: 6,
+  const list = REFS.sorted();
+  // paginate: estimate wrapped lines per entry for a 12 pt column 5.95 in wide (about 88 characters a line)
+  const lines = (e) => Math.ceil(REFS.toPlain(e).length / 92) + 0.37;
+  const colCap = 24.4, cols = [];
+  let cur = [], used = 0;
+  for (const e of list) {
+    const l = lines(e);
+    if (used + l > colCap && cur.length) { cols.push(cur); cur = []; used = 0; }
+    cur.push(e); used += l;
+  }
+  if (cur.length) cols.push(cur);
+  const pages = Math.ceil(cols.length / 2);
+  for (let p = 0; p < pages; p++) {
+    const s = newSlide('Close', p === 0 ? 'refs' : 'refs2');
+    kicker(s, `Sources  ·  APA 7th edition  ·  ${p + 1} of ${pages}`);
+    title(s, 'References');
+    [cols[2 * p], cols[2 * p + 1]].forEach((col, j) => {
+      if (!col) return;
+      const runs = col.flatMap((e, k) => refRuns(e, k === col.length - 1));
+      s.addText(runs, { x: MX + j * 6.18, y: 1.8, w: 5.95, h: 5.0, fontFace: FB, fontSize: 12, color: C.TEXT, margin: 0, valign: 'top', paraSpaceAfter: 5, isTextBox: true, objectName: `apaRefs${p}_${j}` });
     });
-  });
-}
-
-function sRefs2() {
-  const s = newSlide('Close', 'refs2');
-  kicker(s, 'Sources');
-  title(s, 'References: physiotherapy evidence');
-  const refs = [
-    'Bernhardt J, et al. AVERT. Lancet 2015. doi:10.1016/S0140-6736(15)60690-0',
-    'Bernhardt J, et al. AVERT dose–response. Neurology 2016. doi:10.1212/WNL.0000000000002459',
-    'Liu N, et al. Stroke 2014. doi:10.1161/STROKEAHA.114.005661',
-    'Yen HC, et al. Neurorehabil Neural Repair 2019. doi:10.1177/1545968319893294',
-    'Yen HC, et al. Medicine 2021. doi:10.1097/MD.0000000000026128',
-    'Kan TQ, et al. Medicine 2026. doi:10.1097/MD.0000000000050253',
-    'Kelly PJ, et al. Arch Phys Med Rehabil 2003. doi:10.1016/S0003-9993(03)00040-6',
-    'Paolucci S, et al. Stroke 2003. doi:10.1161/01.STR.0000102902.39759.D3',
-    'Salvadori E, et al. Diagnostics 2020. doi:10.3390/diagnostics11010038',
-    'Oosterveer DM, et al. J Stroke Cerebrovasc Dis 2022. doi:10.1016/j.jstrokecerebrovasdis.2021.106294',
-    'Balk S, et al. Neurol Res Pract 2026. doi:10.1186/s42466-026-00456-w',
-    'Puig J, et al. AJNR Am J Neuroradiol 2019. doi:10.3174/ajnr.A6038',
-    'Murray ON, et al. Eur Stroke J 2025. doi:10.1177/23969873251332769',
-    'Gupta S, et al. Front Neurol 2025. doi:10.3389/fneur.2024.1475444',
-    'Yoo HD, et al. Severe early motor deficit and recovery ceiling. Cerebrovasc Dis 2026.',
-    'Selim M, et al. i-DEF. Lancet Neurol 2019;18:428–438.',
-    'Becker KJ, et al. Neurology 2001;56:766–772.',
-    'Levett-Jones T, et al. Nurse Educ Today 2010;30:515–520.',
-  ];
-  const half = Math.ceil(refs.length / 2);
-  [refs.slice(0, half), refs.slice(half)].forEach((col, j) => {
-    T(s, col.map((r, i) => ({ text: `${j * half + i + 1}. ${r}`, options: { breakLine: i < col.length - 1 } })), {
-      x: MX + j * 6.2, y: 1.85, w: 5.9, h: 4.9, fontSize: 12.5, color: C.TEXT, paraSpaceAfter: 6,
-    });
-  });
+  }
 }
 
 function sBackupCauses() {
@@ -839,6 +820,7 @@ function sBackupCauses() {
     iconCircle(s, ic, x + 0.3, y + 0.3, 0.7, C.INK);
     T(s, t, { x: x + 0.3, y: y + 1.1, w: w - 0.6, h: 0.8, fontSize: 22, bold: true, color: C.INK });
   });
+  source(s, 'Causes of secondary intracerebral haemorrhage (Macellari et al., 2014).');
   footer(s, 1);
 }
 function sBackupNew() {
@@ -854,7 +836,7 @@ function sBackupNew() {
     T(s, hd, { x: x + 1.5, y: y + 0.3, w: w - 1.8, h: 0.56, fontSize: 26, bold: true, color: C.INK, valign: 'middle' });
     T(s, tx, { x: x + 0.3, y: y + 1.05, w: w - 0.6, h: 0.8, fontSize: 20 });
   });
-  source(s, 'Charidimou, Lancet Neurol 2022 · Ma, Lancet 2023 · Pradilla, NEJM 2024 · Connolly, NEJM 2024.');
+  source(s, '(Charidimou et al., 2022; Connolly et al., 2024; Ma et al., 2023; Pradilla et al., 2024)');
   footer(s, 0);
 }
 
@@ -870,6 +852,7 @@ async function addTransitions(buf) {
     const n = parseInt(f.match(/slide(\d+)\.xml/)[1], 10);
     let xml = await zip.file(f).async('string');
     const tr = morphSlides.includes(n) ? MORPH : FADE;
+    xml = xml.replace(/<p:sp>(?:(?!<\/p:sp>)[\s\S])*?name="apaRefs[\s\S]*?<\/p:sp>/g, (sp) => sp.replace(/indent="0" marL="0"/g, 'indent="-228600" marL="228600"'));
     xml = xml.includes('</p:clrMapOvr>') ? xml.replace('</p:clrMapOvr>', '</p:clrMapOvr>' + tr) : xml.replace('</p:cSld>', '</p:cSld>' + tr);
     zip.file(f, xml);
   }
@@ -894,7 +877,7 @@ async function addTransitions(buf) {
   sDivider(3, 'div3', '03', 'The days after', 'When the blood becomes a toxin', 2.7, [[4.2, 88], [3.5, 78]]);
   sTimeline(); sCascade(); sMyth1(); sMyth2();
   sDivider(4, 'div4', '04', 'At the bedside', 'What it means for physiotherapy', 2.7, [[4.6, 90], [3.7, 80]]);
-  sTiming(); sDay4a(); sDay4b(); sRecovery(); sWindows(); sThree(); sClose(); sRefs(); sRefs2(); sBackupCauses(); sBackupNew();
+  sTiming(); sDay4a(); sDay4b(); sRecovery(); sWindows(); sThree(); sClose(); sRefs(); sBackupCauses(); sBackupNew();
 
   const buf = await pres.write({ outputType: 'nodebuffer' });
   fs.writeFileSync(OUT, await addTransitions(buf));

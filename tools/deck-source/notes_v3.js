@@ -49,7 +49,7 @@ And that number did not move between 1980 and 2008. In the same years, treatment
 
 Part of the problem is how we think about a bleed. We treat it as one moment. The vessel bursts, the damage is done, and we wait.
 
-[IF CHALLENGED: van Asch pooled 36 population-based studies up to 2008. Later registries show modest gains. Part of the old figure may be a self-fulfilling prophecy: early withdrawal of care (Becker, Neurology 2001).]`,
+[IF CHALLENGED: van Asch et al. (2010) pooled 36 population-based studies up to 2008. Part of the figure may be a self-fulfilling prophecy: early withdrawal of care (Becker et al., 2001).]`,
 
 bigidea: `[About 45 seconds. This is your headline. Say the title slowly, then pause.]
 
@@ -143,7 +143,7 @@ Pons: often severe, with weakness in all four limbs and cranial nerve signs.
 
 Lobar: it depends on the lobe: weakness, neglect, aphasia or field loss. Lobar bleeds also cause more seizures, because they involve the cortex.
 
-[IF CHALLENGED: the PLIC evidence is three imaging cohorts. Puig 2019, n = 43: PLIC involvement plus a motor score above 6 gave an AUC of 0.89 (PPV 65%, NPV 92%). Murray 2025, 98 MISTIE III scans: PLIC overlap on routine CT predicted worse motor outcome, but agreement between readers was only moderate (kappa 0.45). Gupta 2025, n = 305, held up in a second cohort. A predictor, not a sentence.]`,
+[IF CHALLENGED: the PLIC evidence is three imaging cohorts. Puig et al. (2019), n = 43: PLIC involvement plus a motor score above 6 gave an AUC of 0.89 (PPV 65%, NPV 92%). Murray et al. (2025), 98 MISTIE III scans: PLIC overlap on routine CT predicted worse motor outcome, but agreement between readers was only moderate (kappa 0.45). Gupta et al. (2025), n = 305, held up in a second cohort. A predictor, not a sentence.]`,
 
 microbleeds: `[About 40 seconds.]
 
@@ -241,7 +241,7 @@ At 60 millilitres, with a Glasgow Coma Scale of 8 or less, the Cincinnati study 
 
 [Put the ball down where everyone can still see it.]
 
-[IF CHALLENGED: these figures come from 1990s care, when early withdrawal of support was common, so a prognostic score can become a self-fulfilling prophecy (Becker 2001). Use scores to inform, never to decide.]`,
+[IF CHALLENGED: these figures come from 1990s care, when early withdrawal of support was common, so a prognostic score can become a self-fulfilling prophecy (Becker et al., 2001). Use scores to inform, never to decide.]`,
 
 mass: `[About 45 seconds.]
 
@@ -287,7 +287,7 @@ Inflammation runs through the whole period. Immune cells arrive within hours and
 
 [Point to the dark bar.] All three end in the same place: a leaky barrier, more swelling and more dead neurons. That is why patients can get worse days after the bleeding stopped.
 
-[IF CHALLENGED: this is mostly rat and pig data. The best human test so far, i-DEF with deferoxamine (2019), was neutral. Mechanism is not yet treatment.]`,
+[IF CHALLENGED: this is mostly rat and pig data. The best human test so far, i-DEF with deferoxamine, was neutral (Selim et al., 2019). Mechanism is not yet treatment.]`,
 
 myth1: `[About 30 seconds. Soft break 3, at about minute 14.]
 
@@ -313,7 +313,7 @@ The practical proof came in the ICH ADAPT trial. Lowering systolic pressure belo
 
 For us: follow the medical team's blood pressure targets during activity. The rim isn't starving, but pressure still matters for growth.
 
-[IF CHALLENGED: PET in 19 patients shows a mechanism. ICH ADAPT (n = 75) then tested it in a trial, but its endpoint was blood flow on CT perfusion, not function.]`,
+[IF CHALLENGED: PET in 19 patients shows a mechanism (Zazulia et al., 2001). ICH ADAPT (n = 75) then tested it in a trial (Butcher et al., 2013), but its endpoint was blood flow on CT perfusion, not function.]`,
 
 div4: `[5 seconds.]
 
@@ -333,7 +333,7 @@ When should we start? Three trials, three time windows.
 
 So: early, short and frequent, once the team says the patient is stable. Not big, and not in the first hours.
 
-[IF CHALLENGED: Liu's hazard ratio of 4.44 has a 95% confidence interval from 1.24 to 15.87. Few deaths, so read it as a signal, not an effect size. AVERT's ICH subgroup leaned towards usual care, but the interaction was not significant. The dose analysis is observational within the trial (Class III). In Kan 2026, safety outcomes such as rebleeding and falls were too poorly reported to pool.]`,
+[IF CHALLENGED: Liu et al. (2014): the hazard ratio of 4.44 has a 95% confidence interval from 1.24 to 15.87. Few deaths, so read it as a signal, not an effect size. AVERT's ICH subgroup leaned towards usual care, but the interaction was not significant (AVERT Trial Collaboration Group, 2015). The dose analysis is observational within the trial, Class III (Bernhardt et al., 2016). In Kan et al. (2026), safety outcomes such as rebleeding and falls were too poorly reported to pool.]`,
 
 day4a: `[About 50 seconds. Soft break 4, at about minute 17. Read the case slowly.]
 
@@ -351,9 +351,9 @@ day4b: `[About 50 seconds. Walk the loop left to right.]
 
 C. Hold and escalate.
 
-Here is the reasoning, using the clinical reasoning cycle.
+Here is the reasoning, using the clinical reasoning cycle from Levett-Jones and colleagues.
 
-Notice: his GCS has dropped two points, and he has a new headache, vomiting and higher blood pressure. A drop of two GCS points is a common research definition of neurological deterioration.
+Notice: his GCS has dropped two points, and he has a new headache, vomiting and higher blood pressure.
 
 Interpret: this is day 4. Oedema is still building. It could also be growth, or hydrocephalus, the closed box from earlier. Working out which is the medical team's job, not ours.
 
@@ -375,9 +375,9 @@ Families ask us this: do bleeds recover better than strokes from a clot? You'll 
 
 Both fit Chapter 5. Match on the deficit, and more of a bleed's deficit is pressure, which can resolve as the clot clears. Match on the lesion, and the blood itself is toxic, so the same-sized lesion does more harm.
 
-For your patient: don't promise a better recovery because it's a bleed, and don't set a ceiling early. A 2026 systematic review found a severe early motor deficit after a deep bleed is not a fixed ceiling. In severe putaminal bleeds, most gains came in the first four months.
+For your patient: don't promise a better recovery because it's a bleed, and don't set a ceiling early. A 2026 systematic review by Yoo and Chung found a severe early motor deficit after a deep bleed is not a fixed ceiling. In severe putaminal bleeds, most gains came in the first four months.
 
-[IF CHALLENGED: all observational. Survivors only, because about 40% die. ICH patients start lower, so they have more room to gain on Barthel and FIM, which have ceiling effects. Paolucci OR 2.48 (95% CI 1.19–5.20); Balk mRS shift OR 1.69 (1.02–2.79) favouring infarct.]`,
+[IF CHALLENGED: all observational. Survivors only, because about 40% die (van Asch et al., 2010). ICH patients start lower, so they have more room to gain on Barthel and FIM, which have ceiling effects. Paolucci et al. (2003): OR 2.48 (95% CI 1.19–5.20). Balk et al. (2026): mRS shift OR 1.69 (1.02–2.79) favouring infarct. Ceiling: Yoo and Chung (2026).]`,
 
 windows: `[About 55 seconds. The heart of the talk. Slow down.]
 
@@ -417,9 +417,9 @@ Thank you. Which claim tonight would you challenge?
 
 [If the room is quiet, wait five seconds. Then ask: "Which of these windows do we meet most often, and are we timing our assessments around it?"]`,
 
-refs: `[Leave this up during questions if people want the sources. Everything is also on the handout.]`,
+refs: `[References in APA 7th edition: alphabetical, every author listed. Leave these up during questions. The full list is also on page 4 of the handout.]`,
 
-refs2: `[The physiotherapy evidence, with DOIs. Go here if someone asks for a source during questions.]`,
+refs2: `[References, continued. Every DOI is a live link.]`,
 
 backupCauses: `[Backup, hidden. Type its slide number and press Enter to jump here if someone asks about other causes.]
 

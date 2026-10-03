@@ -1,6 +1,6 @@
 # Your public speaking coaching plan
 
-This plan is built from your own Clinical Educator Wiki: Gallo's *Talk Like TED*, Berkun's *Confessions of a Public Speaker*, Duarte's *slide:ology*, Roam's *The Back of the Napkin*, and the clinical-education pages. It works on two horizons:
+This plan is built from your own Clinical Educator Wiki: Gallo (2014), Berkun (2009), Duarte (2008), Roam (2008) and the clinical-education pages. Full references, in APA 7th edition, are at the end. It works on two horizons:
 
 1. **This Sunday:** deliver the Chapter 5 talk well.
 2. **The next eight weeks:** become a speaker people remember.
@@ -15,9 +15,9 @@ It times every slide against its target (now the 34 spoken slides of v3, 21:10 i
 
 Your wiki's five books agree on very little, but they all agree on these three habits.
 
-**Think privately before you speak publicly.** Berkun says "All good public speaking is based on good private thinking." Know your one big idea and your three messages before you build a slide. For Sunday that work is done. The big idea is "ICH is a process, not a moment" (see the message map in `Presenter_Guide.md`).
+**Think privately before you speak publicly.** Berkun (2009) argues that good public speaking rests on good private thinking. Know your one big idea and your three messages before you build a slide. For Sunday that work is done. The big idea is "ICH is a process, not a moment" (see the message map in `Presenter_Guide.md`).
 
-**Rehearse out loud, standing, timed and recorded.** This is the step every author insists on and most speakers skip. Berkun's first coaching question is always "Did you practise?" Jill Bolte Taylor rehearsed her TED talk about 200 times.
+**Rehearse out loud, standing, timed and recorded.** This is the step every author insists on and most speakers skip. Berkun's (2009) first coaching question is whether you practised. Jill Bolte Taylor rehearsed her TED talk about 200 times (Gallo, 2014).
 
 **Hold a conversation, scaled up.** Talk the way you would to a colleague, only bigger. Pause instead of saying "um". Give one sentence to one person. Stress one key word in each sentence.
 
@@ -82,8 +82,8 @@ The deck grew from 17 to about 21 minutes, with six new slides. Spend today on t
 | Day | Rehearsal | Drills (in the app) | Also |
 |---|---|---|---|
 | **Wed 30 Sep** | Read the speaker notes aloud once. Then do full run 1 in the app. Sitting down is fine for this one. | 1 Pause, don't um · 4 First 60 seconds | Buy or borrow a golf ball. Skim Chapter 5 and check the figures. |
-| **Thu 1 Oct** | Full run 2, standing. Film it on your phone and watch it back at 1.5× speed. | 2 Stress one word · 3 Talk through the picture | Watch the video for Berkun's "little things": ums, pet phrases, your back to the room, flat voice. |
-| **Fri 2 Oct** | Full run 3 in front of one person. Ask them: "What would you cut?" | 5 The golf-ball moment · 6 Power sphere | Gallo: people show their real selves with someone they know, and that carries into the talk. |
+| **Thu 1 Oct** | Full run 2, standing. Film it on your phone and watch it back at 1.5× speed. | 2 Stress one word · 3 Talk through the picture | Watch the video for Berkun's (2009) "little things": ums, pet phrases, your back to the room, flat voice. |
+| **Fri 2 Oct** | Full run 3 in front of one person. Ask them: "What would you cut?" | 5 The golf-ball moment · 6 Power sphere | People show their real selves with someone they know, and that carries into the talk (Gallo, 2014). |
 | **Sat 3 Oct** | Two rounds of the Q&A fire drill, then full run 4. Then stop. | 9 Q&A fire drill · 7 One sentence, one person | Pack: slides in three places, core points on a card, golf ball, clicker, charger. Early night. |
 | **Sun 4 Oct** | Morning: the opening and the close only. | None | Walk or exercise to burn off nerves. Arrive or log in 30 minutes early. |
 
@@ -93,7 +93,7 @@ After each full run, save it in the app. Write down one change, and make only th
 
 ## 6. On the day
 
-**Control the controllables** (Berkun):
+**Control the controllables** (Berkun, 2009):
 - Arrive early and do the sound and screen check.
 - Walk the space so your body learns it, then sit in the back row to see what the audience sees.
 - Eat early, not just before you speak.
@@ -112,7 +112,7 @@ After each full run, save it in the app. Write down one change, and make only th
 
 **If the session is online:**
 - Put the camera at eye level and look into the lens for your key lines.
-- Project more energy than feels natural. Video flattens you (Berkun).
+- Project more energy than feels natural. Video flattens you (Berkun, 2009).
 - Share the slide window, not your whole screen, and keep your notes on a second screen.
 - Run the three interactions through the chat or hand-raise buttons instead of real hands.
 - Test your audio 15 minutes early.
@@ -121,7 +121,7 @@ After each full run, save it in the app. Write down one change, and make only th
 
 ## 7. After Sunday: a Gibbs review within 24 hours
 
-Your wiki's Reflective Practice page applies Gibbs to a talk. Use it:
+Your wiki's Reflective Practice page applies Gibbs's (1988) reflective cycle to a talk. Use it:
 
 1. **Description.** Watch the recording if there is one. If not, write down what happened.
 2. **Feelings.** Name them, then set them aside. Feelings are not evidence.
@@ -143,14 +143,14 @@ Spend 10 to 15 minutes a day. Each week has one focus and one practice task.
 | 1 | **Voice** | 5 minutes of drills 1 and 2 daily. Record a 2-minute talk on any clinical topic and count your fillers per minute. |
 | 2 | **Structure** | Write message maps (a headline, three messages, a story, statistic or example for each) for three topics you teach. Give each as a 60-second version. |
 | 3 | **Story** | Collect three anonymised patient stories and one personal story. Tell each in 90 seconds with a clear turning point. |
-| 4 | **Pictures** | Take one bullet slide from an old deck. Name its W (who, how much, where, when, how or why), redraw it as Roam's matching picture, and practise narrating it. |
+| 4 | **Pictures** | Take one bullet slide from an old deck. Name its W (who, how much, where, when, how or why), redraw it as Roam's (2008) matching picture, and practise narrating it. |
 | 5 | **Brevity** | Build a Pecha Kucha (20 slides, 20 seconds each, auto-advancing) on a clinical topic. It forces brutal editing. |
 | 6 | **Teaching** | Run a 10-minute ward teaching session using the One-Minute Preceptor or cognitive apprenticeship (your Clinical Teaching Models page). |
-| 7 | **Hard rooms** | Rehearse Berkun's appendix D scenarios aloud: a heckler, a rambling question, a question you can't answer, and a talk cut from 45 minutes to 10. |
+| 7 | **Hard rooms** | Rehearse Berkun's (2009) appendix D scenarios aloud: a heckler, a rambling question, a question you can't answer, and a talk cut from 45 minutes to 10. |
 | 8 | **Capstone** | Give a 10 to 15-minute talk to real people. Record it, run the Gibbs review, and compare your scorecard with week 0. |
 
 Two more steps are worth taking:
-- **Join Toastmasters, or take an improv class.** Berkun says improv transformed his speaking.
+- **Join Toastmasters, or take an improv class.** Berkun (2009) credits improv with transforming his speaking.
 - **Finish downloading *Presentation Zen*.** It's the one book your wiki still hasn't read. When you send the complete file, I'll add it to the wiki.
 
 ---
@@ -167,8 +167,27 @@ Two more steps are worth taking:
 
 | Measure | Target | Where it comes from |
 |---|---|---|
-| Time | Within 30 seconds of target (21:10, or your cut tier), finishing early | Berkun: "Always end early" |
+| Time | Within 30 seconds of target (21:10, or your cut tier), finishing early | End early (Berkun, 2009) |
 | Fillers | Under 2 per minute | Delivery and Stage Presence |
-| Pace | 120 to 165 words a minute for clinical content with numbers | My working range: Gallo's 190 wpm is for story talks, and numbers need room |
+| Pace | 120 to 165 words a minute for clinical content with numbers | My working range: Gallo's (2014) 190 wpm is for story talks, and numbers need room |
 | Confidence | Rising run on run | Managing Presentation Anxiety: practice is the biggest lever |
 | One change | Carried out on the next run | Reflective Practice: reflection without a next attempt is incomplete |
+
+---
+
+## 11. References
+
+APA 7th edition. The clinical sources for the talk are in `References.md`.
+
+Berkun, S. (2009). *Confessions of a public speaker*. O'Reilly Media.
+
+Duarte, N. (2008). *slide:ology: The art and science of creating great presentations*. O'Reilly Media.
+
+Gallo, C. (2014). *Talk like TED: The 9 public-speaking secrets of the world's top minds*. St. Martin's Press.
+
+Gibbs, G. (1988). *Learning by doing: A guide to teaching and learning methods*. Further Education Unit, Oxford Polytechnic.
+
+Roam, D. (2008). *The back of the napkin: Solving problems and selling ideas with pictures*. Portfolio.
+
+If your wiki uses a different edition of any of these, change the year and publisher to match it.
+

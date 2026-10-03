@@ -495,17 +495,17 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
   }));
 
   const QA = [
-    ['Liu’s hazard ratio of 4.44 looks huge. Do you believe it?', 'As a signal, not an effect size. The 95% CI runs from 1.24 to 15.87, with few deaths, one country, and usual care that may have started rehab late.'],
-    ['AVERT was mostly infarcts. Why apply it to ICH?', 'It included bleeds, and the ICH subgroup leaned towards usual care, though the interaction was not significant. So: caution in the first 24 hours, not a ban. Yen started at 24–72 hours, outside AVERT’s window.'],
-    ['What blood pressure should stop a session?', 'Use the medical team’s target for that patient. No ICH trial gives a physiotherapy threshold. Yen 2021 found early mobilisation did not raise BP variability.'],
-    ['Is PLIC involvement on CT reliable?', 'Moderately. Inter-rater kappa was 0.45 in Murray 2025, better with expert readers. Combine it with the motor exam: in Puig 2019, PLIC plus motor score gave an AUC of 0.89.'],
-    ['Do bleeds recover better than infarcts?', 'It depends on matching. Matched on the deficit (Paolucci): better. Matched on lesion size and site (Balk): worse. Both fit the pathophysiology: pressure resolves, but blood is toxic.'],
-    ['Why trust animal data on thrombin and iron?', 'We shouldn’t fully. It explains why patients decline days later, but i-DEF (deferoxamine) was neutral. Mechanism is not yet treatment.'],
-    ['Isn’t the 40% figure out of date?', 'It covers studies to 2008. Later data show modest gains, and early withdrawal of care can inflate it (Becker 2001).'],
-    ['Why do patients worsen on days 3 to 5?', 'Oedema still building, iron release, hydrocephalus; also pneumonia or seizures. That’s why we screen before every session.'],
-    ['Which outcome measures would you use?', 'Match the measure to the question: FAC for walking, Fugl-Meyer for motor impairment, PASS for early postural control. Barthel and FIM have ceiling effects.'],
-    ['How do you confirm amyloid angiopathy?', 'In life, the Boston criteria on MRI: lobar microbleeds and cortical superficial siderosis. Version 2.0 (2022) added white-matter markers.'],
-    ['Isn’t lowering blood pressure risky for the tissue around the clot?', 'No. PET showed the rim is resting, not starving. ICH ADAPT found lowering below 150 did not reduce flow, and INTERACT2 found below 140 safe.'],
+    ['Liu’s hazard ratio of 4.44 looks huge. Do you believe it?', 'As a signal, not an effect size. The 95% CI runs from 1.24 to 15.87, with few deaths and one country (Liu et al., 2014).'],
+    ['AVERT was mostly infarcts. Why apply it to ICH?', 'It included bleeds, and the ICH subgroup leaned towards usual care, though the interaction was not significant (AVERT Trial Collaboration Group, 2015). So: caution in the first 24 hours, not a ban. Yen et al. (2020) started at 24–72 hours, outside that window.'],
+    ['What blood pressure should stop a session?', 'Use the medical team’s target for that patient. No ICH trial gives a physiotherapy threshold. Early mobilisation did not raise BP variability (Yen et al., 2021).'],
+    ['Is PLIC involvement on CT reliable?', 'Moderately: inter-rater kappa was 0.45, better with expert readers (Murray et al., 2025). Combine it with the motor exam: PLIC plus motor score gave an AUC of 0.89 (Puig et al., 2019).'],
+    ['Do bleeds recover better than infarcts?', 'It depends on matching. Matched on the deficit: better (Paolucci et al., 2003). Matched on lesion size and site: worse (Balk et al., 2026). Both fit the pathophysiology: pressure resolves, but blood is toxic.'],
+    ['Why trust animal data on thrombin and iron?', 'We shouldn’t fully. It explains why patients decline days later (Xi et al., 2006), but deferoxamine was neutral in humans (Selim et al., 2019). Mechanism is not yet treatment.'],
+    ['Isn’t the 40% figure out of date?', 'It covers studies to 2008 (van Asch et al., 2010), and early withdrawal of care can inflate it (Becker et al., 2001).'],
+    ['Why do patients worsen on days 3 to 5?', 'Oedema still building and iron release (Xi et al., 2006), hydrocephalus (Hanley, 2009); also pneumonia or seizures. That’s why we screen before every session.'],
+    ['Which outcome measures would you use?', 'Match the measure to the question: FAC for walking, Fugl-Meyer for motor impairment, PASS for early postural control, as in Yen et al. (2020). Barthel and FIM have ceiling effects.'],
+    ['How do you confirm amyloid angiopathy?', 'In life, the Boston criteria on MRI (Knudsen et al., 2001). Version 2.0 added white-matter markers (Charidimou et al., 2022).'],
+    ['Isn’t lowering blood pressure risky for the tissue around the clot?', 'No. PET showed the rim is resting, not starving (Zazulia et al., 2001), and lowering below 150 did not reduce flow (Butcher et al., 2013).'],
     ['Something you do not know the answer to.', 'Say: “Good question. I don’t want to guess. I’ll check the source and come back to you.” That builds trust.'],
   ];
   let qaTimer = null, qaOrder = [], qaPos = -1;

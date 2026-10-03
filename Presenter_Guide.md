@@ -3,9 +3,10 @@
 | | |
 |---|---|
 | **Audience** | Academic, all physiotherapists. Senior colleagues will expect advanced clinical reasoning and critical appraisal. Junior colleagues need it kept simple. |
-| **Deck** | `Chapter5_ICH_Pathophysiology.pptx`: 36 slides, plus 2 hidden backup slides (37 and 38) |
+| **Deck** | `Chapter5_ICH_Pathophysiology.pptx`: 38 slides, plus 2 hidden backup slides (39 and 40) |
+| **References** | `References.md`: all 42 sources in APA 7th edition, every author listed. The same list is on slides 35–38, at the end of the speaker script and on pages 4–5 of the handout. |
 | **Speaker script** | `Chapter5_Speaker_Script.pdf`: each slide's key point, what to say, a plain-words line for juniors and an "if challenged" appraisal line |
-| **Handout** | `Chapter5_ICH_Handout.pdf`: three A4 pages. Page 3 is the physiotherapy page. |
+| **Handout** | `Chapter5_ICH_Handout.pdf`: five A4 pages. Page 3 is the physiotherapy page; pages 4–5 are the references. |
 | **Backup** | `Chapter5_ICH_Pathophysiology.pdf`: the slides as a PDF |
 | **Practice app** | Rehearsal Coach: https://claude.ai/artifact/BQaWr4xGVSKH8ah5TS13TX |
 | **Coaching plan** | `Speaking_Coach_Plan.md` |
@@ -35,11 +36,12 @@ Every slide has a spoken script in its speaker notes, with cues:
 |---|---|---|
 | 6 · Four things you will be able to do | Objectives (explain, predict, appraise, apply) and the "two ways to listen" device | Sets an academic contract and includes the juniors |
 | 12 · Location predicts the impairment | Five bleed sites, what you'll see at each, and the PLIC as a motor predictor | The most practical link from pathophysiology to assessment |
-| 28 · Early helps; very early and intense may not | AVERT, Liu 2014 and Yen 2019 on a timeline, plus the dose analysis and the 2026 meta-analysis | When to start, with the evidence graded |
+| 28 · Early helps; very early and intense may not | AVERT Trial Collaboration Group (2015), Liu et al. (2014) and Yen et al. (2020) on a timeline, plus the dose analysis (Bernhardt et al., 2016) and the meta-analysis by Kan et al. (2026) | When to start, with the evidence graded |
 | 29–30 · Day 4: drowsier than yesterday | A reasoning case worked through the clinical reasoning cycle (notice, interpret, act, reflect) | Turns oedema and hydrocephalus into a bedside decision |
 | 31 · It depends what you match | Do bleeds recover better than infarcts? Five studies, and why they disagree | Prognosis, and a model piece of critical appraisal |
 | 32 · Every stage is a window to act | Rewritten with a physiotherapy job for each stage, and a fourth stage: the months after | The synthesis slide |
-| 36 · References: physiotherapy evidence | 18 references with DOIs | For the academic room |
+| 35–38 · References | 42 references in APA 7th edition, alphabetical, every author listed, with DOIs | For the academic room |
+| Every evidence slide | An APA 7 in-text citation in its source line, for example (Brott et al., 1997) | So any claim can be traced on the spot |
 
 The close now ends with "Which claim tonight would you challenge?" instead of "What would you like me to clarify?". It invites the appraisal the room wants and shows you are not afraid of it.
 
@@ -47,7 +49,7 @@ The close now ends with "Which claim tonight would you challenge?" instead of "W
 
 ## 2. The message map
 
-Gallo's message map, with one headline and three messages each backed by a story, a statistic and an example:
+Gallo's (2014) message map, with one headline and three messages each backed by a story, a statistic and an example:
 
 **Headline (under 140 characters, takes a position):** ICH is a process, not a moment, and every stage is a window to act.
 
@@ -59,7 +61,7 @@ Gallo's message map, with one headline and three messages each backed by a story
 
 **Call to action for physiotherapists:** time therapy to the stage. Neuro obs first in the first hours. Early, short and frequent once stable. Screen before every session in the days after. Set no early ceiling in the months after.
 
-**Story shape (Duarte's "what is" and "what could be"):**
+**Story shape (Duarte's [2008] "what is" and "what could be"):**
 - It opens on Jill's morning and the 40% figure (what is).
 - The turn is "a process, not a moment" (what could be).
 - Three acts follow, then the bedside section follows the patient through time: hours, days, months.
@@ -105,10 +107,9 @@ Gallo's message map, with one headline and three messages each backed by a story
 | 32 | Every stage is a window to act | 0:45 | The heart of the talk. Slow down. |
 | 33 | If you remember three things | 0:20 | Pause between the lines |
 | 34 | Eight years later (close) | 0:35 | "Which claim tonight would you challenge?" |
-| 35 | References: the chapter story | | Leave up during questions |
-| 36 | References: physiotherapy evidence | | DOIs, if someone asks for a source |
-| 37 | *Hidden:* other causes of a secondary bleed | | Type `37` and press Enter |
-| 38 | *Hidden:* what has changed since 2014 | | Type `38` and press Enter |
+| 35–38 | References (APA 7th edition) | | Leave slide 35 up during questions |
+| 39 | *Hidden:* other causes of a secondary bleed | | Type `39` and press Enter |
+| 40 | *Hidden:* what has changed since 2014 | | Type `40` and press Enter |
 
 **Section targets:** Opening 3:35 · 01 Vessel 5:30 · 02 Hours 3:25 · 03 Days 2:50 · 04 Bedside 5:50. **Total 21:10.**
 
@@ -133,16 +134,16 @@ The challenges you are most likely to get, with the answer:
 
 | Challenge | Your answer |
 |---|---|
-| Liu's hazard ratio of 4.44 is too good to be true. | Agreed, as an effect size. The 95% CI is 1.24 to 15.87, there were few deaths, it was one country, and usual care may have started rehab late. It is a signal that early rehab is not harmful and may help. |
-| AVERT was mostly infarcts. Why apply it to bleeds? | It included bleeds. The ICH subgroup leaned towards usual care, though the interaction was not significant. So: caution in the first 24 hours, not a ban. Yen started at 24–72 hours, outside AVERT's window. |
-| The AVERT dose analysis isn't randomised. | Correct. It is observational within the trial (Class III). That is why the slide says "did better", not "is better". |
-| Is PLIC involvement on routine CT reliable? | Moderately. Inter-rater kappa was 0.45 in Murray 2025, and it was better with expert readers. Use it with the motor exam: in Puig 2019 the two together gave an AUC of 0.89. |
-| Paolucci matched patients and found bleeds did better. Why not believe that? | Paolucci matched on the clinical deficit. Balk matched on lesion size and site and found bleeds did worse. Both can be true: more of a bleed's deficit is pressure, which resolves, but the blood is toxic. |
-| These recovery studies only include survivors. | Yes, and about 40% die in the first month, so all of them are biased towards milder bleeds. ICH patients also start lower on Barthel and FIM, which have ceiling effects, so they have more room to gain. |
-| Isn't the inflammation story just animal data? | Mostly, yes. It explains why patients decline days later, but i-DEF (deferoxamine) was neutral in humans. Mechanism is not yet treatment. |
-| Isn't the 40% figure out of date? | It covers studies up to 2008. Later data show modest gains, and early withdrawal of care can inflate the figure (Becker 2001). |
-| The 91% mortality figure is from the 1990s. | Yes, from an era of early withdrawal of support, so a prognostic score can become a self-fulfilling prophecy. Use scores to inform, never to decide. |
-| What blood pressure should stop a session? | The medical team's target for that patient. No ICH trial gives a physiotherapy threshold. Yen 2021 found early mobilisation did not raise blood pressure variability. |
+| Liu's hazard ratio of 4.44 is too good to be true. | Agreed, as an effect size. The 95% CI is 1.24 to 15.87, there were few deaths and it was one country (Liu et al., 2014). It is a signal that early rehab is not harmful and may help. |
+| AVERT was mostly infarcts. Why apply it to bleeds? | It included bleeds. The ICH subgroup leaned towards usual care, though the interaction was not significant (AVERT Trial Collaboration Group, 2015). So: caution in the first 24 hours, not a ban. Yen et al. (2020) started at 24–72 hours, outside AVERT's window. |
+| The AVERT dose analysis isn't randomised. | Correct. It is observational within the trial, Class III (Bernhardt et al., 2016). That is why the slide says "did better", not "is better". |
+| Is PLIC involvement on routine CT reliable? | Moderately. Inter-rater kappa was 0.45, and it was better with expert readers (Murray et al., 2025). Use it with the motor exam: the two together gave an AUC of 0.89 (Puig et al., 2019). |
+| Paolucci matched patients and found bleeds did better. Why not believe that? | Paolucci et al. (2003) matched on the clinical deficit. Balk et al. (2026) matched on lesion size and site and found bleeds did worse. Both can be true: more of a bleed's deficit is pressure, which resolves, but the blood is toxic. |
+| These recovery studies only include survivors. | Yes, and about 40% die in the first month (van Asch et al., 2010), so all of them are biased towards milder bleeds. ICH patients also start lower on Barthel and FIM, which have ceiling effects, so they have more room to gain. |
+| Isn't the inflammation story just animal data? | Mostly, yes. It explains why patients decline days later, but i-DEF (deferoxamine) was neutral in humans (Selim et al., 2019). Mechanism is not yet treatment. |
+| Isn't the 40% figure out of date? | It covers studies up to 2008 (van Asch et al., 2010), and early withdrawal of care can inflate the figure (Becker et al., 2001). |
+| The 91% mortality figure is from the 1990s. | Yes (Broderick et al., 1993), from an era of early withdrawal of support (Becker et al., 2001), so a prognostic score can become a self-fulfilling prophecy. Use scores to inform, never to decide. |
+| What blood pressure should stop a session? | The medical team's target for that patient. No ICH trial gives a physiotherapy threshold. Early mobilisation did not raise blood pressure variability (Yen et al., 2021). |
 
 ---
 
@@ -154,13 +155,13 @@ The challenges you are most likely to get, with the answer:
 
 **Why is a cerebellar bleed different?** It can block CSF and press on the brainstem. A drowsy cerebellar patient is an emergency.
 
-**Is it safe to sit someone up on day 2?** If the team says the patient is stable and the neuro obs are steady: yes, in short sessions. Very early, high-dose work in the first 24 hours is what AVERT warns against.
+**Is it safe to sit someone up on day 2?** If the team says the patient is stable and the neuro obs are steady: yes, in short sessions. Very early, high-dose work in the first 24 hours is what AVERT warns against (AVERT Trial Collaboration Group, 2015).
 
-**What if the family asks whether they'll walk again?** Don't promise, and don't set a ceiling. After severe deep bleeds most motor gains come in the first four months, so reassess often.
+**What if the family asks whether they'll walk again?** Don't promise, and don't set a ceiling. After severe deep bleeds most motor gains come in the first four months, so reassess often (Yoo & Chung, 2026).
 
-**Why are anticoagulant bleeds worse?** The blood can't clot well, so the bleed keeps growing for longer. In SMASH-U they were the largest bleeds, and 54% of those patients were dead at three months.
+**Why are anticoagulant bleeds worse?** The blood can't clot well, so the bleed keeps growing for longer. In SMASH-U they were the largest bleeds, and 54% of those patients were dead at three months (Meretoja et al., 2012).
 
-**What's new since 2014?** Go to hidden slide 38.
+**What's new since 2014?** Go to hidden slide 40.
 
 **If you don't know the answer:** "Good question. I don't want to guess. I'll check the source and come back to you."
 
@@ -175,16 +176,16 @@ The challenges you are most likely to get, with the answer:
 | ~14 min | 25 | Hands up for "true" | Reactions, or a thumbs up for "true" |
 | ~16½ min | 29 | Hands up for A, B or C on the Day-4 case | Chat: A, B or C |
 
-**Always say what you see** ("Most of you went for B"). That turns a vote into a conversation (Berkun). On slide 29, if a senior colleague picks B, don't correct them in front of the room. Say "B is tempting. Let's reason it through," and move to slide 30.
+**Always say what you see** ("Most of you went for B"). That turns a vote into a conversation (Berkun, 2009). On slide 29, if a senior colleague picks B, don't correct them in front of the room. Say "B is tempting. Let's reason it through," and move to slide 30.
 
 ---
 
 ## 7. Props and set-up
 
-- **A golf ball.** Your jaw-dropping moment (Gallo). Keep it in a pocket you can reach without looking. On slide 20, take it out before you speak, hold it at shoulder height and count three seconds of silence.
+- **A golf ball.** Your jaw-dropping moment (Gallo, 2014). Keep it in a pocket you can reach without looking. On slide 20, take it out before you speak, hold it at shoulder height and count three seconds of silence.
 - **A clicker with a timer.** Presenter View shows your notes and the next slide.
 - **The handout.** Print copies, or share the PDF in the chat if the session is online. Hand it out at the end so people listen instead of reading. Page 3 is the one physiotherapists will keep.
-- **Water, and a card with your three messages on it.** The card is your Plan B if the tech fails (Berkun).
+- **Water, and a card with your three messages on it.** The card is your Plan B if the tech fails (Berkun, 2009).
 
 ---
 
@@ -192,17 +193,17 @@ The challenges you are most likely to get, with the answer:
 
 | Wiki rule | Where it's applied |
 |---|---|
-| One big idea in the title, taking a position (Gallo, Berkun) | "ICH is a process, not a moment" on slides 5 and 34 |
+| One big idea in the title, taking a position (Berkun, 2009; Gallo, 2014) | "ICH is a process, not a moment" on slides 5 and 34 |
 | Pathos first: reach a human story within 60 seconds | Jill's story starts on slide 2 at about 0:20 |
-| Bookend with the same story (Gallo) | Slides 2–3 and 34 |
-| One jaw-dropping moment (Gallo) | The golf ball on slide 20 |
-| Soft breaks every ~10 minutes (Gallo, Berkun) | Four, on slides 14, 18, 25 and 29 |
-| Titles state conclusions (Duarte) | "Location predicts the impairment", "It depends what you match" |
-| Highlight what matters; grey the rest (Duarte) | Slides 8, 19 and 31 (unmatched studies in grey) |
-| Reveal the surprise last (Roam, Duarte) | The Morph reveals on slides 3, 11, 15, 19, 26 and 30 |
-| Answer the right W with the right picture (Roam) | "When" is a timeline (slide 28); "how much" is a dot plot (slides 18–19) |
-| Detail goes in a handout (Duarte) | The three-page handout, including the appraisal table |
-| Clinical reasoning (Levett-Jones) | The Day-4 case on slides 29–30 |
+| Bookend with the same story (Gallo, 2014) | Slides 2–3 and 34 |
+| One jaw-dropping moment (Gallo, 2014) | The golf ball on slide 20 |
+| Soft breaks every ~10 minutes (Berkun, 2009; Gallo, 2014) | Four, on slides 14, 18, 25 and 29 |
+| Titles state conclusions (Duarte, 2008) | "Location predicts the impairment", "It depends what you match" |
+| Highlight what matters; grey the rest (Duarte, 2008) | Slides 8, 19 and 31 (unmatched studies in grey) |
+| Reveal the surprise last (Duarte, 2008; Roam, 2008) | The Morph reveals on slides 3, 11, 15, 19, 26 and 30 |
+| Answer the right W with the right picture (Roam, 2008) | "When" is a timeline (slide 28); "how much" is a dot plot (slides 18–19) |
+| Detail goes in a handout (Duarte, 2008) | The handout, including the appraisal questions and the full reference list |
+| Clinical reasoning (Levett-Jones et al., 2010) | The Day-4 case on slides 29–30 |
 | Objectives that use Bloom's action verbs | Slide 6 |
 
 v3 adds words to the evidence slides, through the tags and the trial labels on slide 28. That is a deliberate trade for an academic room: the tag carries the appraisal so the title can stay simple.
@@ -214,7 +215,7 @@ v3 adds words to the evidence slides, through the tags and the trial labels on s
 - [ ] Open the file in desktop PowerPoint (2019 or Microsoft 365) so Morph works. Older versions fall back to a fade.
 - [ ] Turn on Presenter View.
 - [ ] Decide on your cut tier before you start, and hide those slides.
-- [ ] Slides 37 and 38 are already hidden. During questions, type the slide number and press Enter to jump to them.
+- [ ] Slides 39 and 40 are already hidden. During questions, type the slide number and press Enter to jump to them.
 - [ ] The fonts are Cambria and Calibri, which come with Office.
 - [ ] Save the deck in three places (laptop, USB stick, cloud), and put the PDF on your phone.
 - [ ] Test the clicker, the adaptor and the screen ratio. The deck is 16:9.
@@ -225,15 +226,32 @@ v3 adds words to the evidence slides, through the tags and the trial labels on s
 
 ## 10. A note on sources
 
-I still can't open the textbook PDF: it is over the Drive connector's 10 MB limit, and this environment's network blocks direct downloads. I confirmed the chapter's title and authors. Every figure on the slides and in the handout was checked against its original paper and is cited. The physiotherapy evidence (slides 12, 28 and 31) was checked against the published abstracts.
+I still can't open the textbook PDF: it is over the Drive connector's 10 MB limit, and this environment's network blocks direct downloads. I confirmed the chapter's title, authors, pages (51–60) and DOI. Every figure on the slides and in the handout was checked against its original paper and carries an APA 7 in-text citation. Every reference lists all its authors (up to 20; for 21 or more, the first 19, an ellipsis and the final author), checked on 3 October 2026. The full list is in `References.md`.
 
 Before Sunday, skim Chapter 5. If it gives a different figure, or stresses a topic that doesn't have a slide, tell me and I'll update the deck. To let me read the chapter itself, upload just the Chapter 5 pages as a PDF under 10 MB.
 
 **Mr K on slides 29–30 is a composite teaching case, not a real patient.** Say so if asked.
 
-**Jill Bolte Taylor's story** is from her TED talk "My stroke of insight" (2008) and her book *My Stroke of Insight* (2006). The details are:
+**Jill Bolte Taylor's story** is from her TED talk (Taylor, 2008a) and her book (Taylor, 2008b). The details are:
 - The stroke happened on 10 December 1996, when she was 37.
 - The cause was an AVM in her left hemisphere.
 - Within four hours she could not walk, talk, read or write.
 - On 27 December 1996, surgeons removed a clot the size of a golf ball.
 - Her recovery took eight years.
+
+---
+
+## 11. References
+
+APA 7th edition. The clinical sources (42) are in `References.md`. The presentation sources cited in this guide, from your Clinical Educator Wiki, are:
+
+Berkun, S. (2009). *Confessions of a public speaker*. O'Reilly Media.
+
+Duarte, N. (2008). *slide:ology: The art and science of creating great presentations*. O'Reilly Media.
+
+Gallo, C. (2014). *Talk like TED: The 9 public-speaking secrets of the world's top minds*. St. Martin's Press.
+
+Roam, D. (2008). *The back of the napkin: Solving problems and selling ideas with pictures*. Portfolio.
+
+If your wiki uses a different edition of any of these, change the year and publisher to match it.
+

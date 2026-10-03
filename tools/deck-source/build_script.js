@@ -9,6 +9,7 @@ const lu = require('react-icons/lu');
 let chromium;
 try { ({ chromium } = require('playwright')); } catch { ({ chromium } = require('/opt/node22/lib/node_modules/playwright')); }
 const S = require('./script_content');
+const REFS = require('./refs');
 
 const THUMBS = process.argv[2] || 'thumbs_jpg';
 const OUT = process.argv[3] || 'speaker_script.pdf';
@@ -128,6 +129,13 @@ td.t { font-weight:700; white-space:nowrap; width:16mm; }
 .steps4 li { display:grid; gap:.8mm; align-content:start; }
 .steps4 i { font-style:normal; font-family:'Caladea','Cambria',serif; font-weight:700; font-size:16pt; color:var(--red); line-height:1; }
 
+/* sources and references */
+.src { margin-top:1.6mm; display:flex; gap:1.4mm; align-items:flex-start; font-size:8.6pt; color:var(--slate); font-style:italic; }
+.src svg { flex:none; margin-top:.5mm; }
+.refs { columns:2; column-gap:7mm; font-size:8.4pt; line-height:1.38; }
+.refs p { margin:0 0 1.9mm; padding-left:5mm; text-indent:-5mm; break-inside:avoid; }
+.refs a { color:inherit; text-decoration:none; }
+
 /* close page */
 .qa { columns:2; column-gap:8mm; }
 .qa div { break-inside:avoid; margin-bottom:3.2mm; }
@@ -151,7 +159,7 @@ body += `<section class="cover"><div class="arc"></div><div class="arc2"></div>
   <div class="label">Speaker script · Chapter 5 review</div>
   <h1>When the vessel breaks</h1>
   <div class="sub">What to say, slide by slide · for an academic physiotherapy audience</div>
-  <div class="when"><span class="chip r">Sunday 4 October 2026 · 8 pm</span><span class="chip">${icon('LuClock', INK, 12)} About 21 minutes, then questions</span><span class="chip">36 slides + 2 hidden</span></div>
+  <div class="when"><span class="chip r">Sunday 4 October 2026 · 8 pm</span><span class="chip">${icon('LuClock', INK, 12)} About 21 minutes, then questions</span><span class="chip">38 slides + 2 hidden</span></div>
   <div class="idea"><div class="label">The big idea</div><h2>ICH is a process, not a moment.</h2>
     <ol><li><i>1</i><span>The vessel decides where it bleeds.</span></li><li><i>2</i><span>The first hours decide how big it gets.</span></li><li><i>3</i><span>The blood keeps injuring the brain for days.</span></li></ol></div>
   <div class="heart">
@@ -171,6 +179,7 @@ body += `<section class="cover"><div class="arc"></div><div class="arc2"></div>
         <li>${icon('LuChevronsRight', '#3E5C76')} <i class="muted">the line that carries you to the next slide</i></li>
         <li><span class="p">${icon('LuSprout', '#3E5C76', 10)} Plain words</span> the same point for junior colleagues</li>
         <li><span class="a">${icon('LuSearch', INK, 10)} If challenged</span> appraisal point; not in the timed script</li>
+        <li>${icon('LuBookOpen', '#3E5C76')} <i class="muted">sources for the slide, as APA 7 in-text citations</i></li>
       </ul></div>
   </div>
   <div class="bottom"><span>Oxford Textbook of Stroke and Cerebrovascular Disease (ed. Norrving, OUP 2014). Chapter 5 by Constanza Rossi and Charlotte Cordonnier.</span><span>Aim for confidence, not memorising. Learn the three lines above; talk the rest.</span></div>
@@ -184,7 +193,7 @@ const rows = S.sections.filter((s) => s.time).map((s, i) => {
 }).join('');
 body += `<section class="overview"><div class="label">The talk on one page</div><h2>Running order</h2>
   <table><tr><th></th><th>Section</th><th>Slides</th><th>Time</th></tr>${rows}
-  <tr><td></td><td><b>Questions</b><br><span class="muted">Leave the references up. Hidden backups on slides 37 and 38.</span></td><td class="muted">Slides 35–36</td><td class="t">Rest of slot</td></tr></table>
+  <tr><td></td><td><b>Questions</b><br><span class="muted">Leave the references up. Hidden backups on slides 39 and 40.</span></td><td class="muted">Slides 35–38</td><td class="t">Rest of slot</td></tr></table>
   <div class="boxes">
     <div class="box r"><h3>${icon('LuHand')} Four moments with the room</h3><ul>
       <li><b>Slide 14, ~8 min:</b> 30 seconds with a neighbour: "Primary or secondary?"</li>
@@ -230,6 +239,7 @@ for (const sl of S.slides) {
     <div class="right">
       <div class="head"><span class="num">${pad(sl.n)}</span><h3>${sl.title}</h3>${sl.verbatim ? `<span class="vb">${icon('LuQuote', '#fff', 10)} Word for word</span>` : ''}</div>
       <div class="key"><div class="label">Key point</div><p>${sl.key}</p></div>
+      ${sl.src ? `<div class="src">${icon('LuBookOpen', '#3E5C76', 11)}<span>${sl.src}</span></div>` : ''}
       <div class="say${sl.verbatim ? ' vbx' : ''}"><div class="label">Say</div><ul>${sl.say.map((t) => `<li><span>${t}</span></li>`).join('')}</ul></div>
       ${cueHtml(sl.cues)}
       ${sl.next ? `<div class="next">${icon('LuChevronsRight', '#3E5C76')}<span>${sl.next}</span></div>` : ''}
@@ -245,6 +255,10 @@ body += `<section class="break"><div class="sec first"><span class="n">?</span><
   <div class="box r" style="margin-top:4mm"><h3>${icon('LuMessageCircleQuestion')} If the room goes quiet</h3>
   <ul><li>Ask: "Which of these windows do we meet most often in our own practice, and are we timing our assessments around it?"</li><li>Then wait a full five seconds. Silence gives people time to think.</li></ul></div>
 </section>`;
+
+// ---------- references ----------
+body += `<section class="break"><div class="sec first"><span class="n">R</span><div><h2>References</h2><div class="note">APA 7th edition. Every author is listed (up to 20; for 21 or more, the first 19, an ellipsis, then the final author).</div></div></div>
+  <div class="refs">${REFS.sorted().map((e) => `<p>${REFS.toHTML(e)}</p>`).join('')}</div></section>`;
 
 const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>Speaker script · When the vessel breaks</title><style>${css}</style></head><body>${body}</body></html>`;
 
