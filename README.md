@@ -1,15 +1,17 @@
 # Chapter 5 talk: "When the vessel breaks"
 
-A review of **Chapter 5, Pathophysiology of non-traumatic intracerebral haemorrhage** (Rossi & Cordonnier), from the *Oxford Textbook of Stroke and Cerebrovascular Disease* (ed. Norrving, OUP 2014). Version 2 is rebuilt to the standards of the Clinical Educator Wiki (`fredtom1/presentation-clinical-education`).
+A review of **Chapter 5, Pathophysiology of non-traumatic intracerebral haemorrhage** (Rossi & Cordonnier), from the *Oxford Textbook of Stroke and Cerebrovascular Disease* (ed. Norrving, OUP 2014). Built to the standards of the Clinical Educator Wiki (`fredtom1/presentation-clinical-education`).
+
+**Version 3 is for an academic physiotherapy audience.** Every slide title is the take-home message for junior colleagues. Evidence slides carry a grey tag giving the study design and its main limit, for senior colleagues to challenge. It adds physiotherapy slides on location and impairment, timing of mobilisation, a Day-4 reasoning case and the recovery debate.
 
 | File | What it is |
 |---|---|
-| `Chapter5_ICH_Pathophysiology.pptx` | **The deck (v2):** 29 slides plus 2 hidden backups, with a full speaker script in the notes |
-| `Chapter5_Speaker_Script.pdf` | **What to say, slide by slide:** each slide's key point, talking points, cues and the line into the next slide, with a thumbnail, the three lines to know by heart, and quick Q&A answers |
-| `Chapter5_ICH_Handout.pdf` | Two-page A4 handout holding the detail taken off the slides |
+| `Chapter5_ICH_Pathophysiology.pptx` | **The deck (v3):** 36 slides plus 2 hidden backups, about 21 minutes, with a full speaker script in the notes |
+| `Chapter5_Speaker_Script.pdf` | **What to say, slide by slide:** each slide's key point and talking points, cues, a plain-words line for juniors, an "if challenged" appraisal line, a thumbnail, and the likely questions |
+| `Chapter5_ICH_Handout.pdf` | Three-page A4 handout. Page 3 is for physiotherapy: location and impairment, the timing trials, red flags before a session, five appraisal questions and a glossary. |
 | `Chapter5_ICH_Pathophysiology.pdf` | The slides as a PDF, as a backup |
-| `Presenter_Guide.md` | Message map, running order, interactions, props, Q&A, tech checklist and source notes |
-| `Speaking_Coach_Plan.md` | Your public speaking plan: a self-score, 5 days to Sunday, the on-the-day routine, a Gibbs review and 8 weeks of practice |
+| `Presenter_Guide.md` | What changed for physiotherapists, message map, running order with a two-tier cut list, how to take an academic challenge, Q&A, interactions, props and tech checklist |
+| `Speaking_Coach_Plan.md` | Your public speaking plan, including speaking to an academic room and a Saturday–Sunday plan for v3 |
 | Rehearsal Coach app | https://claude.ai/artifact/BQaWr4xGVSKH8ah5TS13TX (the source is in `tools/rehearsal-coach/`) |
-| `archive/v1/` | The first version of the deck |
-| `tools/deck-source/` | Generators: `build_v2.js` (deck), `build_handout.js` (handout), `build_script.js` + `script_content.js` (speaker script), `build_v1.js` (the old deck) |
+| `archive/v2/`, `archive/v1/` | Earlier versions of the deck, script and handout |
+| `tools/deck-source/` | Generators: `build_v3.js` + `notes_v3.js` (deck), `build_handout.js` (handout), `build_script.js` + `script_content.js` (speaker script). The v2 and v1 deck builders are kept alongside. |

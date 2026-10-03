@@ -7,7 +7,7 @@ This plan is built from your own Clinical Educator Wiki: Gallo's *Talk Like TED*
 
 Your practice tool is the **Rehearsal Coach** app: https://claude.ai/artifact/BQaWr4xGVSKH8ah5TS13TX
 
-It times every slide against its target and counts your fillers when you tap. It also holds the drills, checks pasted transcripts and keeps a log of your runs. I can read that log, so each run you save gives me something concrete to coach from.
+It times every slide against its target (now the 34 spoken slides of v3, 21:10 in total) and counts your fillers when you tap. It also holds nine drills, including "Take a challenge" for academic questions, checks pasted transcripts and keeps a log of your runs. I can read that log, so each run you save gives me something concrete to coach from.
 
 ---
 
@@ -39,24 +39,59 @@ Rate each skill from 1 to 5 now, then again after Sunday and after week 8. Be ho
 | Body | Still feet, gestures between eye level and navel, eye contact with one person per sentence | Delivery and Stage Presence |
 | Nerves | I have a routine, and the nerves feel like energy | Managing Presentation Anxiety |
 | Q&A | I answer briefly, say "I don't know" when I don't, and handle a rambler kindly | Handling Questions and Difficult Audiences |
+| Challenge | I can take a critical-appraisal challenge in four steps, in under 30 seconds | Handling Questions and Difficult Audiences |
 
 ---
 
-## 3. Five days to Sunday
+## 3. Speaking to an academic room
+
+Your audience is academic physiotherapists, with junior colleagues in the room too. That changes three things about how you speak.
+
+**Own the limits before anyone else names them.** Senior colleagues trust a speaker who states the weakness of their own evidence. The grey tags do that on the slides. Say them out loud when it matters: "This is one RCT of 243, so read it as a signal." It sounds confident, not defensive.
+
+**Answer a challenge in four steps, in under 30 seconds.**
+1. Thank them.
+2. Name the design and its limit.
+3. Give your position.
+4. Stop.
+
+The worst answer is a long one. The second worst is pretending the limit isn't there. Practise this with drill 8 in the app ("Take a challenge").
+
+**Speak to both levels at once.** Give the plain-words line first, then the technical term: "the blood itself is toxic: thrombin, iron and inflammation". Juniors get the idea and seniors get the precision. Never apologise for keeping it simple. Simple is a skill.
+
+**If a senior colleague disagrees with you in the room:** "That's a fair reading. Here's why I landed differently," then one reason, then "Happy to pick it up afterwards." You don't need to win. You need to stay calm and stay on time.
+
+---
+
+## 4. Saturday and Sunday (the talk changed to v3)
+
+The deck grew from 17 to about 21 minutes, with six new slides. Spend today on those, not on the parts you already know.
+
+| When | Rehearsal | Drills (in the app) |
+|---|---|---|
+| **Sat morning** | Read slides 6, 12 and 28–32 aloud from the speaker script, three times each. These are the new ones. | 3 Talk through the picture (slides 28 and 31) |
+| **Sat afternoon** | Full run, standing, timed in the app. Decide your cut tier from the result: under 21 minutes, keep everything; over 22, use tier 1. | 8 Take a challenge · 9 Q&A fire drill |
+| **Sat evening** | One more full run, then stop. Pack: slides in three places, three messages on a card, golf ball, clicker, charger. | 4 First 60 seconds |
+| **Sun morning** | The opening, slide 6, the Day-4 case and the close only. | None |
+| **Sun 7:30 pm** | Arrive or log in 30 minutes early. Hide your cut-tier slides. | Breathe out slowly, find a friendly face |
+
+---
+
+## 5. The original five days to Sunday (v2 plan, for reference)
 
 | Day | Rehearsal | Drills (in the app) | Also |
 |---|---|---|---|
 | **Wed 30 Sep** | Read the speaker notes aloud once. Then do full run 1 in the app. Sitting down is fine for this one. | 1 Pause, don't um · 4 First 60 seconds | Buy or borrow a golf ball. Skim Chapter 5 and check the figures. |
 | **Thu 1 Oct** | Full run 2, standing. Film it on your phone and watch it back at 1.5× speed. | 2 Stress one word · 3 Talk through the picture | Watch the video for Berkun's "little things": ums, pet phrases, your back to the room, flat voice. |
 | **Fri 2 Oct** | Full run 3 in front of one person. Ask them: "What would you cut?" | 5 The golf-ball moment · 6 Power sphere | Gallo: people show their real selves with someone they know, and that carries into the talk. |
-| **Sat 3 Oct** | Two rounds of the Q&A fire drill, then full run 4. Then stop. | 8 Q&A fire drill · 7 One sentence, one person | Pack: slides in three places, core points on a card, golf ball, clicker, charger. Early night. |
+| **Sat 3 Oct** | Two rounds of the Q&A fire drill, then full run 4. Then stop. | 9 Q&A fire drill · 7 One sentence, one person | Pack: slides in three places, core points on a card, golf ball, clicker, charger. Early night. |
 | **Sun 4 Oct** | Morning: the opening and the close only. | None | Walk or exercise to burn off nerves. Arrive or log in 30 minutes early. |
 
 After each full run, save it in the app. Write down one change, and make only that change on the next run. One change per run beats ten half-changes.
 
 ---
 
-## 4. On the day
+## 6. On the day
 
 **Control the controllables** (Berkun):
 - Arrive early and do the sound and screen check.
@@ -84,7 +119,7 @@ After each full run, save it in the app. Write down one change, and make only th
 
 ---
 
-## 5. After Sunday: a Gibbs review within 24 hours
+## 7. After Sunday: a Gibbs review within 24 hours
 
 Your wiki's Reflective Practice page applies Gibbs to a talk. Use it:
 
@@ -99,7 +134,7 @@ Also write down every question you were asked. They become your Q&A preparation 
 
 ---
 
-## 6. The next eight weeks
+## 8. The next eight weeks
 
 Spend 10 to 15 minutes a day. Each week has one focus and one practice task.
 
@@ -120,7 +155,7 @@ Two more steps are worth taking:
 
 ---
 
-## 7. Using me as your coach
+## 9. Using me as your coach
 
 - **After a run:** save it in the Rehearsal Coach, then tell me "check my runs." I'll read your log and point out where your time goes, whether your fillers are falling, and what to change next.
 - **With a transcript:** record a run, transcribe it with your phone, and paste it into the app's "Check a transcript" tab. You get pace, filler and sentence numbers straight away. Press "Ask Claude for coaching" for written feedback, or send the transcript to me here.
@@ -128,11 +163,11 @@ Two more steps are worth taking:
 
 ---
 
-## 8. The numbers to watch
+## 10. The numbers to watch
 
 | Measure | Target | Where it comes from |
 |---|---|---|
-| Time | Within 30 seconds of target, finishing early | Berkun: "Always end early" |
+| Time | Within 30 seconds of target (21:10, or your cut tier), finishing early | Berkun: "Always end early" |
 | Fillers | Under 2 per minute | Delivery and Stage Presence |
 | Pace | 120 to 165 words a minute for clinical content with numbers | My working range: Gallo's 190 wpm is for story talks, and numbers need room |
 | Confidence | Rising run on run | Managing Presentation Anxiety: practice is the biggest lever |

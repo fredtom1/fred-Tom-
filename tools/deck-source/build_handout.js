@@ -1,4 +1,4 @@
-// Two-page A4 handout for the Chapter 5 talk. HTML -> PDF with Playwright/Chromium.
+// Three-page A4 handout for the Chapter 5 talk (page 3: physiotherapy). HTML -> PDF with Playwright/Chromium.
 // Usage: node build_handout.js <out.pdf>
 const fs = require('fs');
 const path = require('path');
@@ -65,6 +65,25 @@ ul.ic li svg { flex:none; margin-top:.4mm; }
 .win em { font-style:normal; color: var(--muted); font-size:8pt; text-transform:uppercase; letter-spacing:.08em; font-weight:700; display:block; margin-bottom:1mm; }
 .refs { font-size:7.2pt; color: var(--muted); line-height:1.35; columns:2; column-gap:8mm; margin-top:4mm; }
 .refs p { margin:0 0 .8mm; break-inside:avoid; }
+.p3 table.loc td { font-size:8.5pt; padding:.9mm 1.5mm; }
+.p3 table.loc td.k { width:34mm; color: var(--ink); }
+.p3 table.loc tr.hi td { color: inherit; font-weight:400; background: var(--blush); }
+.p3 table.loc tr.hi td.k { color: var(--redd); font-weight:700; }
+.p3 table.ev { font-size:8.2pt; }
+.p3 table.ev td { padding:1mm 1.2mm; }
+.p3 table.ev td.k { width:20mm; color: var(--ink); }
+.p3 table.ev td.k span { display:block; font-weight:400; color: var(--muted); font-size:7.2pt; line-height:1.25; }
+.p3 table.ev td:last-child { color: var(--slate); width:22mm; }
+.p3 p { font-size:8.8pt; }
+.loop { display:grid; grid-template-columns: repeat(4,1fr); gap:2mm; margin:2.5mm 0 1.2mm; }
+.loop div { background: var(--mist); border-radius:2mm; padding:2mm; font-size:8.4pt; line-height:1.25; }
+.loop i { display:block; font-style:normal; font-family:'Caladea','Cambria',serif; font-weight:700; font-size:14pt; color: var(--red); line-height:1; margin-bottom:.8mm; }
+ul.ic.q li i { font-style:normal; font-family:'Caladea','Cambria',serif; font-weight:700; color: var(--red); width:3.5mm; flex:none; }
+.muted { color: var(--muted); }
+dl.gl { display:grid; grid-template-columns: repeat(3,1fr); gap:1.4mm 5mm; margin:1mm 0 0; font-size:8.3pt; line-height:1.3; }
+dl.gl div { display:flex; gap:2mm; }
+dl.gl dt { font-weight:700; width:17mm; flex:none; color: var(--redd); }
+dl.gl dd { margin:0; }
 .foot { position:absolute; left:18mm; right:18mm; bottom:9mm; border-top:0.8pt solid var(--red); padding-top:1.5mm; display:flex; justify-content:space-between; font-size:7.5pt; color: var(--muted); }
 `;
 
@@ -134,7 +153,7 @@ const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><tit
       </table>
     </div>
   </div>
-  <div class="foot"><span>Chapter 5 · When the vessel breaks</span><span>1 / 2</span></div>
+  <div class="foot"><span>Chapter 5 · When the vessel breaks</span><span>1 / 3</span></div>
 </section>
 
 <section class="page">
@@ -208,7 +227,78 @@ const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><tit
     <p>Zazulia AR, et al. J Cereb Blood Flow Metab 2001;21:804–810.</p>
     <p>Butcher KS, et al. Stroke 2013;44:620–626.</p>
   </div>
-  <div class="foot"><span>Chapter 5 · When the vessel breaks</span><span>2 / 2</span></div>
+  <div class="foot"><span>Chapter 5 · When the vessel breaks</span><span>2 / 3</span></div>
+</section>
+
+<section class="page p3">
+  <div class="arc"></div>
+  <div class="label">Chapter 5 review · Handout · For physiotherapy</div>
+  <h1 class="title" style="font-size:21pt">From mechanism to the bedside</h1>
+  <div class="sub">What the pathophysiology predicts for assessment, timing and prognosis.</div>
+  <h3 style="margin-top:3mm">${icon('LuMapPin')}Location predicts the impairment</h3>
+  <table class="loc">
+    <tr><th>Location</th><th>What you will see</th><th>Physiotherapy focus</th></tr>
+    <tr class="hi"><td class="k">Putamen, internal capsule</td><td>Opposite-side weakness ± sensory and field loss; aphasia (left) or neglect (right)</td><td>Check the PLIC on imaging; task-specific motor training</td></tr>
+    <tr><td class="k">Thalamus</td><td>Opposite-side sensory loss, ataxia; later, central pain</td><td>Sensory and balance retraining; screen for new pain</td></tr>
+    <tr><td class="k">Cerebellum</td><td>Same-side limb ataxia, truncal sway, vertigo, vomiting</td><td>Balance and gait. <b>Drowsiness is an emergency</b> (hydrocephalus)</td></tr>
+    <tr><td class="k">Pons</td><td>Four-limb weakness, cranial nerve signs; often severe</td><td>Chest, positioning, seating; a communication plan</td></tr>
+    <tr><td class="k">Lobar</td><td>By lobe: weakness, neglect, aphasia, field loss; seizures more common</td><td>Screen cognition and neglect; know the seizure plan</td></tr>
+  </table>
+  <div class="cols" style="margin-top:4mm">
+    <div>
+      <h3 style="margin-top:0">${icon('LuTimer')}When to start: the trials</h3>
+      <table class="ev">
+        <tr><th>Study</th><th>Finding</th><th>Main limit</th></tr>
+        <tr><td class="k">AVERT 2015<span>RCT · n = 2104</span></td><td>High dose within 24 h: fewer good outcomes (46% vs 50%)</td><td>ICH a minority; subgroup only</td></tr>
+        <tr><td class="k">AVERT 2016<span>dose analysis</span></td><td>More sessions a day: better (OR 1.13). More minutes: worse (OR 0.94)</td><td>Observational</td></tr>
+        <tr><td class="k">Liu 2014<span>RCT · n = 243</span></td><td>Rehab within 48 h: MBI +13, fewer deaths</td><td>HR CI 1.24–15.87; one country</td></tr>
+        <tr><td class="k">Yen 2019<span>RCT · n = 60</span></td><td>Out of bed at 24–72 h: better FIM-motor and FAC; BP stable</td><td>Small; mild–moderate only</td></tr>
+        <tr><td class="k">Kan 2026<span>17 RCTs · n = 1396</span></td><td>Very early looked better than early</td><td>Low certainty</td></tr>
+      </table>
+      <div class="dark"><b>Practical reading.</b> Start early once the team says the patient is stable. Keep sessions short and frequent. Avoid high-dose work in the first 24 hours.</div>
+      <h3>${icon('LuScale')}Recovery: what to tell families</h3>
+      <p>Matched on the <b>deficit</b>, bleeds recovered better (Paolucci 2003, OR 2.48). Matched on <b>lesion size and site</b>, they did worse (Balk 2026, OR 1.69 favouring infarct). Unmatched studies disagree. More of a bleed's deficit is pressure, which resolves, but the blood is toxic. A severe early motor deficit after a deep bleed is <b>not a fixed ceiling</b>; in severe putaminal bleeds most gains came in the first four months (Yoo 2026).</p>
+
+    </div>
+    <div>
+      <h3 style="margin-top:0">${icon('LuTriangleAlert')}Before every session: stop and escalate if</h3>
+      <ul class="ic">
+        <li>${icon('LuCheck', '#C1272D', 14)}<span>GCS down 2 or more, or new confusion or drowsiness</span></li>
+        <li>${icon('LuCheck', '#C1272D', 14)}<span>New or worse headache, or vomiting</span></li>
+        <li>${icon('LuCheck', '#C1272D', 14)}<span>New weakness, speech change, pupil change or a seizure</span></li>
+        <li>${icon('LuCheck', '#C1272D', 14)}<span>BP outside the team's target for this patient</span></li>
+        <li>${icon('LuCheck', '#C1272D', 14)}<span>Cerebellar bleed with any drowsiness: emergency</span></li>
+      </ul>
+      <div class="loop"><div><i>1</i><b>Notice</b> the cues</div><div><i>2</i><b>Interpret</b> with the timeline</div><div><i>3</i><b>Act:</b> stop, escalate</div><div><i>4</i><b>Reflect</b> and re-screen</div></div>
+      <p class="muted" style="font-size:7.8pt">Clinical reasoning cycle adapted from Levett-Jones et al. 2010. Day 3 onwards: oedema still building and iron released.</p>
+      <h3>${icon('LuSearch')}Appraise any claim: five questions</h3>
+      <ul class="ic q">
+        <li><i>1</i><span><b>Who was studied?</b> Survivors only? Mild cases only?</span></li>
+        <li><i>2</i><span><b>Compared with what?</b> Matched on deficit, or on lesion?</span></li>
+        <li><i>3</i><span><b>How big, how certain?</b> Read the interval, not just the p value.</span></li>
+        <li><i>4</i><span><b>Measured how?</b> Barthel and FIM have ceiling effects.</span></li>
+        <li><i>5</i><span><b>Does it fit my patient?</b> Setting, timing, severity.</span></li>
+      </ul>
+
+    </div>
+  </div>
+  <h3 style="margin-top:3mm">${icon('LuBookOpen')}Glossary for junior colleagues</h3>
+  <dl class="gl">
+    <div><dt>ICH</dt><dd>bleeding into brain tissue</dd></div>
+    <div><dt>Haematoma</dt><dd>the clot from the bleed</dd></div>
+    <div><dt>Oedema</dt><dd>swelling around the clot</dd></div>
+    <div><dt>CAA</dt><dd>amyloid in surface arteries</dd></div>
+    <div><dt>AVM</dt><dd>tangle of arteries and veins</dd></div>
+    <div><dt>Microbleed</dt><dd>tiny old bleed on MRI</dd></div>
+    <div><dt>Spot sign</dt><dd>contrast leak: still bleeding</dd></div>
+    <div><dt>IVH</dt><dd>blood in the ventricles</dd></div>
+    <div><dt>PLIC</dt><dd>where the motor fibres run</dd></div>
+    <div><dt>GCS</dt><dd>conscious level, 3 to 15</dd></div>
+    <div><dt>mRS</dt><dd>disability, 0 (none) to 6</dd></div>
+    <div><dt>FAC</dt><dd>walking ability, 0 to 5</dd></div>
+  </dl>
+  <p class="muted" style="font-size:7.6pt;margin-top:2.5mm">Sources: Bernhardt 2015, 2016 · Liu 2014 · Yen 2019, 2021 · Kan 2026 · Paolucci 2003 · Kelly 2003 · Salvadori 2020 · Oosterveer 2022 · Balk 2026 · Puig 2019 · Murray 2025 · Gupta 2025 · Yoo 2026 · Levett-Jones 2010. Full references with DOIs: slide 36.</p>
+  <div class="foot"><span>Chapter 5 · When the vessel breaks · For physiotherapy</span><span>3 / 3</span></div>
 </section>
 </body></html>`;
 
@@ -219,7 +309,7 @@ const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><tit
   await page.setContent(html, { waitUntil: 'load' });
   await page.pdf({ path: OUT, format: 'A4', printBackground: true, preferCSSPageSize: true });
   await page.setViewportSize({ width: 794, height: 1123 });
-  const n = await page.evaluate(() => [...document.querySelectorAll('.page')].map((p) => { const top = p.getBoundingClientRect().top; const foot = p.querySelector('.foot').getBoundingClientRect().top - top; let max = 0; p.querySelectorAll('.cols > div > *, .win, .refs, .big, .sec').forEach((el) => { max = Math.max(max, el.getBoundingClientRect().bottom - top); }); return Math.round(foot - max); }));
+  const n = await page.evaluate(() => [...document.querySelectorAll('.page')].map((p) => { const top = p.getBoundingClientRect().top; const foot = p.querySelector('.foot').getBoundingClientRect().top - top; let max = 0; p.querySelectorAll('.cols > div > *, .win, .refs, .big, .sec, table, dl, h3').forEach((el) => { max = Math.max(max, el.getBoundingClientRect().bottom - top); }); return Math.round(foot - max); }));
   console.log('Wrote', OUT, 'px of space above footer per page:', n.join(','));
   await browser.close();
 })().catch((e) => { console.error(e); process.exit(1); });

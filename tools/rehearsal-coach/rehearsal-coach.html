@@ -150,7 +150,7 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
     </div>
     <div class="meta">
       <span class="chip hot" id="countdown">Sunday 4 October, 8 pm</span>
-      <span class="chip">Target <b>17:15</b> + questions</span>
+      <span class="chip">Target <b>21:10</b> + questions</span>
       <span class="chip">Runs logged <b id="runCount">0</b></span>
     </div>
   </header>
@@ -177,7 +177,7 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
         <div class="row"><span class="muted">This slide</span><span class="muted tnum" id="slideTarget">target 0:20</span></div>
         <div class="big" id="slideClock">0:00</div>
         <div class="gauge" aria-hidden="true"><i id="slideGauge"></i></div>
-        <div class="row"><span class="total" id="totalClock">0:00 / 17:15</span><span class="delta ok" id="pace">On pace</span></div>
+        <div class="row"><span class="total" id="totalClock">0:00 / 21:10</span><span class="delta ok" id="pace">On pace</span></div>
         <div class="controls">
           <button class="btn" id="backBtn" type="button">Back</button>
           <button class="btn ghost" id="pauseBtn" type="button">Pause</button>
@@ -226,10 +226,10 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
 
   <!-- DRILLS -->
   <section id="drills" role="tabpanel" hidden>
-    <p class="note" style="margin-bottom:14px">Eight drills from your knowledge base. Do two or three a day, standing up, out loud. Each timer is the drill's length.</p>
+    <p class="note" style="margin-bottom:14px">Nine drills from your knowledge base. Do two or three a day, standing up, out loud. Each timer is the drill's length.</p>
     <div class="drills" id="drillGrid"></div>
     <article class="panel qa" style="margin-top:16px" id="qaPanel">
-      <div class="row"><div><div class="eyebrow">Drill 8 · Q&amp;A fire drill</div><h3>Answer in 30 seconds: answer, one fact, stop</h3></div><span class="big" style="font-size:40px" id="qaClock">0:30</span></div>
+      <div class="row"><div><div class="eyebrow">Drill 9 · Q&amp;A fire drill</div><h3>Answer in 30 seconds: answer, one fact, stop</h3></div><span class="big" style="font-size:40px" id="qaClock">0:30</span></div>
       <p class="q" id="qaQ">Press “Next question” to start.</p>
       <details id="qaA" hidden><summary>Show a model answer</summary><p id="qaAText"></p></details>
       <div class="actions"><button class="btn primary" type="button" id="qaNext">Next question</button><button class="btn" type="button" id="qaStop">Stop</button></div>
@@ -281,41 +281,47 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
 (() => {
   const TALK = new Date(2026, 9, 4, 20, 0, 0);
   const ACTS = [
-    { name: 'Opening', from: 1, to: 5 },
-    { name: '01 Vessel', from: 6, to: 13 },
-    { name: '02 Hours', from: 14, to: 19 },
-    { name: '03 Days', from: 20, to: 24 },
-    { name: '04 Bedside', from: 25, to: 28 },
+    { name: 'Opening', from: 1, to: 6 },
+    { name: '01 Vessel', from: 7, to: 15 },
+    { name: '02 Hours', from: 16, to: 21 },
+    { name: '03 Days', from: 22, to: 26 },
+    { name: '04 Bedside', from: 27, to: 34 },
   ];
   const SLIDES = [
-    [20, 'When the vessel breaks', 'Stand still at the centre first. “My chapter is Chapter 5 … I want to start with one person.”', ''],
-    [35, '10 December 1996', '7 a.m. A 37-year-old scientist wakes with a pounding pain behind her left eye. Her name is Jill Bolte Taylor. She studies the brain for a living.', ''],
-    [35, 'Within four hours', 'Balance, then her right arm, then her speech. The numbers on the phone look like squiggles. A vessel had burst in the left side of her brain.', 'Ask for a show of hands: who has looked after someone with a bleed like this? Say what you see.'],
-    [40, '40%', 'Point at the number and pause. “Forty percent die within a month.” It did not move between 1980 and 2008.', ''],
-    [45, 'ICH is a process, not a moment', 'Say the headline slowly, then pause. The vessel decides where; the first hours decide how big; the blood keeps injuring for days.', ''],
+    [20, 'When the vessel breaks', 'Stand still at the centre first. “My chapter is Chapter 5 … Tonight I want to read it as physiotherapists … But I want to start with one person.”', ''],
+    [25, '10 December 1996', '7 a.m. A 37-year-old scientist wakes with a pounding pain behind her left eye. Her name is Jill Bolte Taylor. She studies the brain for a living.', ''],
+    [40, 'Within four hours', 'Balance, then her right arm, then her speech. The numbers on the phone look like squiggles. A vessel had burst in the left side of her brain.', 'Show of hands: who has treated someone in the first week after a bleed like this? Say what you see.'],
+    [35, '40%', 'Point at the number and pause. “Forty percent die within a month.” It did not move between 1980 and 2008.', ''],
+    [40, 'ICH is a process, not a moment', 'Say the headline slowly, then pause. The vessel decides where; the first hours decide how big; the blood keeps injuring for days.', ''],
+    [55, 'Four things you will be able to do', 'Explain, predict, appraise, apply. Two ways to listen: the title is the message; the grey tag is the evidence. “Experienced? Challenge the tags.”', 'Point at the dark card, then at the first real tag on slide 8.'],
     [5, '01 · The vessel', '“Stage one. The vessel. Why does a small artery give way?”', ''],
-    [45, 'Hypertension and amyloid cause over half', 'Point at the two red bars and stay silent for two seconds. 35 plus 20: over half, both small-vessel diseases.', ''],
-    [60, 'Two diseases, two sets of vessels', 'Left to right: healthy, then hypertension (thick, glassy, brittle; the microaneurysm bulge), then amyloid (the dark dots).', ''],
-    [30, 'Where it bleeds: deep', 'Deep bleed, think hypertension. Perforators branch at right angles off high-pressure trunks.', ''],
-    [30, 'Where it bleeds: lobar', 'Lobar in an older adult points to amyloid. Young or atypical should make us suspicious. “Keep that thought.”', ''],
-    [40, 'Microbleeds are the footprints', 'Black dots on MRI. Surface points to amyloid, deep to hypertension. Cordonnier’s review: 60% of people with ICH.', ''],
+    [40, 'Hypertension and amyloid cause over half', 'Point at the two red bars and stay silent for two seconds. 35 plus 20: over half. The cause predicts where it bleeds, and where predicts what we’ll see.', ''],
+    [55, 'Two diseases, two sets of vessels', 'Left to right: healthy, then hypertension (thick, glassy, brittle), then amyloid (the dark dots). Plain words: stiff and brittle deep; weak on the surface.', ''],
+    [25, 'Where it bleeds: deep', 'Deep bleed, think hypertension. Perforators branch at right angles off high-pressure trunks.', ''],
+    [25, 'Where it bleeds: lobar', 'Lobar in an older adult points to amyloid. Young or atypical: be suspicious. “But first: what does location mean for us?”', ''],
+    [60, 'Location predicts the impairment', 'Row by row: putamen and PLIC, thalamus, cerebellum (drowsy = emergency), pons, lobar (seizures). Give each row a breath.', ''],
+    [35, 'Microbleeds are the footprints', 'Black dots on MRI. Surface points to amyloid, deep to hypertension. Cordonnier’s review: 60% of people with ICH.', ''],
     [45, 'Your turn: primary or secondary?', 'Jill was 37, normotensive, with a lobar bleed.', 'Ask them to discuss with a neighbour for 30 seconds. Count to 30 silently, then take two answers.'],
-    [45, 'Secondary: an AVM', 'Born with an AVM, and it ruptured. 65% of patients like her had a lesion; over 45, hypertensive, deep: zero. The story tells you where to look.', ''],
+    [40, 'Secondary: an AVM', '65% of patients like her had a lesion; over 45, hypertensive, deep: zero. The story tells you where to look.', ''],
     [5, '02 · The first hours', '“Stage two. The first hours. Jill had four of them.”', ''],
-    [45, 'One rupture can trigger more', 'Rupture, haematoma, avalanche (Fisher, 1971), tamponade. “So how often does the bleeding keep going?”', ''],
+    [35, 'One rupture can trigger more', 'Rupture, haematoma, avalanche (Fisher, 1971), tamponade. “So how often does the bleeding keep going?”', ''],
     [30, 'How many bleeds keep growing?', '100 patients, all scanned within three hours.', 'Take a vote with hands up: A five, B fifteen, C forty. Say what you see.'],
-    [45, '38 in 100 keep growing', 'Wait for the dots to finish, then say “Thirty-eight.” 26 within an hour, 12 more by 20 hours. This is Jill’s four hours.', ''],
-    [60, 'The golf ball', 'A golf ball holds about 40 mL. The dashed line is 60 mL. A clot that grows by a third looks only 10% wider. 91% mortality at 60 mL with GCS 8 or less.', 'Before you speak, take the golf ball out, hold it up and stay silent for three seconds.'],
-    [45, 'The skull is a closed box', 'Trace the rings outwards: compression, raised pressure, shift. About 45% break into the ventricles.', ''],
+    [50, '38 in 100 keep growing', 'Wait for the dots, then “Thirty-eight.” This is Jill’s four hours. For us: neuro obs before any handling in the first day.', ''],
+    [50, 'The golf ball', 'About 40 mL. The dashed line is 60 mL. A third more volume looks only 10% wider. 91% mortality at 60 mL with GCS 8 or less.', 'Before you speak, take the golf ball out, hold it up and stay silent for three seconds.'],
+    [35, 'The skull is a closed box', 'Compression, raised pressure, shift. About 45% break into the ventricles. Hydrocephalus at the bedside: drowsy, headache, vomiting.', ''],
     [5, '03 · The days after', '“Stage three. The bleeding has stopped. The injury has not.”', ''],
-    [55, 'Oedema builds in waves', 'Hours: clot retracts. Days 1–2: thrombin. Day 3+: iron. Weeks: clearance. +75% in 24 hours. Jill: surgery 17 days later.', ''],
-    [45, 'Three toxins, one result', 'Thrombin, iron, inflammation. Point to the dark bar: leaky barrier, more oedema, neuronal death.', ''],
+    [50, 'Oedema builds in waves', 'Hours: clot retracts. Days 1–2: thrombin. Day 3+: iron. Weeks: clearance. +75% in 24 hours. The days after are not a safe plateau.', ''],
+    [45, 'Three toxins, one result', 'Thrombin, iron, inflammation. Point to the dark bar. Plain words: the blood itself is toxic.', ''],
     [30, 'True or false?', '“The rim around the clot is starving tissue.”', 'Ask for hands up for “true”, count them and say what you see.'],
-    [40, 'Resting, not starving', 'Flow 56%, oxygen use 48%: the tissue is resting. ICH ADAPT: below 150 did not reduce flow.', ''],
-    [5, '04 · At the bedside', '“So what do we do with all this at the bedside?”', ''],
-    [75, 'Every stage is a window to act', 'Slow down here: this is the heart of the talk. Vessel: blood pressure and antithrombotics. Hours: image fast, reverse, watch the GCS. Days: expect fluctuation, escalate, pace therapy.', ''],
-    [30, 'Three things', 'Read each line slowly, with a pause between them.', ''],
-    [45, 'Close: back to Jill', 'Eight years to recover, then the TED stage with a human brain. “ICH is a process, not a moment.”', 'Pause for three seconds, then ask: “What would you like me to clarify?”'],
+    [40, 'Resting, not starving', 'Flow 56%, oxygen use 48%: resting. ICH ADAPT: below 150 did not reduce flow. For us: follow the team’s BP targets.', ''],
+    [10, '04 · At the bedside', '“What does this mean for physiotherapy? Let’s follow the patient through time.”', ''],
+    [60, 'Early helps; very early and intense may not', 'AVERT (red bar), Liu (slate), Yen (navy), then the dark strip: short and frequent; certainty low. “Early, short and frequent, once stable.”', ''],
+    [60, 'Day 4: drowsier than yesterday', 'Mr K, 68: left putaminal bleed, 22 mL. Today: GCS 13, new headache, vomited, BP 184/98. Planned sit-to-stand.', 'Ask for hands (or the chat): A, B or C. Say what you see.'],
+    [50, 'C: hold the session and escalate', 'Notice, interpret, act, reflect. “Not today” is a clinical decision, not a failure.', ''],
+    [70, 'It depends what you match', 'Grey dots disagree. Matched on deficit (Paolucci): better. Matched on lesion (Balk): worse. Don’t promise; don’t set a ceiling early.', 'Land the title slowly.'],
+    [45, 'Every stage is a window to act', 'Slow down: the heart of the talk. Vessel, first hours, days after, months after: one physiotherapy job each.', ''],
+    [20, 'Three things', 'Read each line slowly, with a pause between them.', ''],
+    [35, 'Close: back to Jill', 'Eight years to recover, then the TED stage with a human brain. “ICH is a process, not a moment.”', 'Pause for three seconds, then ask: “Which claim tonight would you challenge?”'],
   ].map(([t, title, say, doIt], i) => ({ n: i + 1, t, title, say, doIt }));
   const TARGET = SLIDES.reduce((a, s) => a + s.t, 0);
 
@@ -326,8 +332,9 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
 
   // ---------- countdown ----------
   (function countdown() {
-    const days = Math.ceil((TALK - new Date()) / 86400000);
-    $('countdown').textContent = days > 1 ? `Sunday 8 pm · ${days} days to go` : days === 1 ? 'Sunday 8 pm · tomorrow' : days === 0 ? 'Talk day · 8 pm' : 'Talk delivered';
+    const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const days = Math.round((new Date(TALK.getFullYear(), TALK.getMonth(), TALK.getDate()) - today) / 86400000);
+    $('countdown').textContent = now - TALK > 3600000 ? 'Talk delivered' : days > 1 ? `Sunday 8 pm · ${days} days to go` : days === 1 ? 'Sunday 8 pm · tomorrow' : 'Talk day · 8 pm';
   })();
 
   // ---------- tabs ----------
@@ -460,11 +467,12 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
   const DRILLS = [
     { n: 1, name: 'Pause, don’t um', src: 'Berkun', min: 2, why: 'Silence reads as confidence. Comedians spend a fifth or more of their stage time silent.', steps: ['Record yourself giving slide 4 (40%).', 'Each time an “um” is coming, close your mouth and pause instead.', 'Play it back and count. Aim for under 2 fillers a minute.'] },
     { n: 2, name: 'Stress one word', src: 'Berkun · Gallo', min: 3, why: 'Your voice is a highlighter. Stressing one word per sentence tells the room what matters.', steps: ['Say “I believe all people should have the right to laugh” seven times, stressing a different word each time.', 'Say “ICH is a process, not a moment” three ways.', 'Keep the version where “process” lands hardest.'] },
-    { n: 3, name: 'Talk through the picture', src: 'Roam', min: 5, why: 'Speakers used to bullet points freeze on a picture slide. Narrate it in four steps instead.', steps: ['Use slides 7, 8, 17 and 24.', 'Look aloud: “This shows… along the bottom is…”', 'See aloud: point at two or three things. Imagine aloud: say what it implies.', 'Show: “So this is what it means.”'] },
+    { n: 3, name: 'Talk through the picture', src: 'Roam', min: 5, why: 'Speakers used to bullet points freeze on a picture slide. Narrate it in four steps instead.', steps: ['Use slides 9, 19, 28 and 31.', 'Look aloud: “This shows… along the bottom is…”', 'See aloud: point at two or three things. Imagine aloud: say what it implies.', 'Show: “So this is what it means.”'] },
     { n: 4, name: 'First 60 seconds by heart', src: 'Berkun', min: 3, why: 'Nerves peak at the start. A memorised opening carries you until the adrenaline settles.', steps: ['Stand at your start mark.', 'Give slides 1–3 word for word, three times.', 'Reach “10 December 1996” within 20 seconds.'] },
     { n: 5, name: 'The golf-ball moment', src: 'Gallo', min: 2, why: 'One planned, surprising moment is what people remember and repeat.', steps: ['Keep the ball in a pocket you can reach without looking.', 'Take it out before you speak, hold it at shoulder height, and count three seconds of silence.', 'Deliver the line, then put the ball where everyone can still see it.'] },
     { n: 6, name: 'Power sphere', src: 'Gallo', min: 3, why: 'Gestures between eye level and navel read as energy; hands below the waist read as low energy.', steps: ['Record your first five minutes.', 'List every movement that has no purpose (swaying, pen clicking).', 'Re-run: gestures in the power sphere, feet still except when you change section.'] },
-    { n: 7, name: 'One sentence, one person', src: 'Berkun', min: 3, why: 'Eye contact is the test of whether you have the room. Give each thought to one person.', steps: ['Put five objects around the room as “faces”.', 'Deliver slide 26 and give each sentence to a different face.', 'Never look at the floor or the ceiling between them.'] },
+    { n: 7, name: 'One sentence, one person', src: 'Berkun', min: 3, why: 'Eye contact is the test of whether you have the room. Give each thought to one person.', steps: ['Put five objects around the room as “faces”.', 'Deliver slide 32 and give each sentence to a different face.', 'Never look at the floor or the ceiling between them.'] },
+    { n: 8, name: 'Take a challenge', src: 'Berkun', min: 4, why: 'An academic room will test your evidence. A calm, four-step answer shows you know the limits, which builds more trust than certainty.', steps: ['Have someone read you a challenge, e.g. “Liu’s hazard ratio looks too good to be true.”', 'Thank them. Name the design and its limit. Give your position. Stop.', 'Keep it under 30 seconds. Repeat with the AVERT and PLIC challenges from the Q&A list.'] },
   ];
   $('drillGrid').innerHTML = DRILLS.map((d) => `
     <article class="panel drill" id="drill${d.n}">
@@ -487,18 +495,18 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
   }));
 
   const QA = [
-    ['Why do the deep perforating arteries bleed and not the big ones?', 'They branch at right angles off large, high-pressure arteries, so they get little pressure buffering. Years of hypertension leave a thick but brittle wall.'],
-    ['Are Charcot–Bouchard microaneurysms real?', 'They were described in 1868, but later work suggests some were artefacts. Their exact role in rupture is still debated, which is why the slide says so.'],
-    ['How do you confirm amyloid angiopathy?', 'Definite CAA needs pathology. In life we use the Boston criteria on MRI: lobar microbleeds and cortical superficial siderosis. Version 2.0 (2022) added white-matter markers.'],
-    ['Why are anticoagulant bleeds so bad?', 'The blood cannot clot well, so the haematoma keeps growing for longer. In SMASH-U they were the largest bleeds, and 54% of those patients were dead at three months.'],
-    ['Isn’t lowering blood pressure risky for the tissue around the clot?', 'PET showed the rim is resting, not starving. In ICH ADAPT, lowering systolic pressure below 150 did not reduce flow around the clot.'],
-    ['What is the spot sign?', 'Contrast leaking into the clot on CT angiography, which means the bleed is still active. It predicts growth.'],
-    ['How is haemorrhagic transformation different from primary ICH?', 'In haemorrhagic transformation the infarct comes first and the damaged tissue bleeds, often after reperfusion. In primary ICH a diseased small vessel ruptures.'],
-    ['Why do some patients get worse on day three to five?', 'Oedema is still building, red cells are releasing iron, and hydrocephalus can develop. Pneumonia and seizures play a part too.'],
-    ['Is there a drug for the secondary injury yet?', 'Not yet. Many worked in animals, but the i-DEF trial of the iron chelator deferoxamine (2019) showed no meaningful benefit at 90 days.'],
-    ['When should rehabilitation start?', 'Follow the medical team’s parameters, and be most watchful in the first 24 to 72 hours. In AVERT, very early high-dose mobilisation within 24 hours reduced good outcomes. Once the patient is stable, use short, frequent sessions with a neuro check first.'],
-    ['Is ICH more common in some settings?', 'Yes. Worldwide it is about 28% of strokes, and incidence is highest in lower-middle-income countries. Uncontrolled hypertension is the main driver.'],
-    ['Something you do not know the answer to.', 'Say: “Good question. I don’t want to guess. I’ll check and come back to you.” That builds trust.'],
+    ['Liu’s hazard ratio of 4.44 looks huge. Do you believe it?', 'As a signal, not an effect size. The 95% CI runs from 1.24 to 15.87, with few deaths, one country, and usual care that may have started rehab late.'],
+    ['AVERT was mostly infarcts. Why apply it to ICH?', 'It included bleeds, and the ICH subgroup leaned towards usual care, though the interaction was not significant. So: caution in the first 24 hours, not a ban. Yen started at 24–72 hours, outside AVERT’s window.'],
+    ['What blood pressure should stop a session?', 'Use the medical team’s target for that patient. No ICH trial gives a physiotherapy threshold. Yen 2021 found early mobilisation did not raise BP variability.'],
+    ['Is PLIC involvement on CT reliable?', 'Moderately. Inter-rater kappa was 0.45 in Murray 2025, better with expert readers. Combine it with the motor exam: in Puig 2019, PLIC plus motor score gave an AUC of 0.89.'],
+    ['Do bleeds recover better than infarcts?', 'It depends on matching. Matched on the deficit (Paolucci): better. Matched on lesion size and site (Balk): worse. Both fit the pathophysiology: pressure resolves, but blood is toxic.'],
+    ['Why trust animal data on thrombin and iron?', 'We shouldn’t fully. It explains why patients decline days later, but i-DEF (deferoxamine) was neutral. Mechanism is not yet treatment.'],
+    ['Isn’t the 40% figure out of date?', 'It covers studies to 2008. Later data show modest gains, and early withdrawal of care can inflate it (Becker 2001).'],
+    ['Why do patients worsen on days 3 to 5?', 'Oedema still building, iron release, hydrocephalus; also pneumonia or seizures. That’s why we screen before every session.'],
+    ['Which outcome measures would you use?', 'Match the measure to the question: FAC for walking, Fugl-Meyer for motor impairment, PASS for early postural control. Barthel and FIM have ceiling effects.'],
+    ['How do you confirm amyloid angiopathy?', 'In life, the Boston criteria on MRI: lobar microbleeds and cortical superficial siderosis. Version 2.0 (2022) added white-matter markers.'],
+    ['Isn’t lowering blood pressure risky for the tissue around the clot?', 'No. PET showed the rim is resting, not starving. ICH ADAPT found lowering below 150 did not reduce flow, and INTERACT2 found below 140 safe.'],
+    ['Something you do not know the answer to.', 'Say: “Good question. I don’t want to guess. I’ll check the source and come back to you.” That builds trust.'],
   ];
   let qaTimer = null, qaOrder = [], qaPos = -1;
   function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -546,7 +554,7 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
     if (r.fill.length) hints.push('Fillers heard: ' + r.fill.map(([k, c]) => `${k} ×${c}`).join(', ') + '. Count “like” only when it is a filler.');
     if (r.startsSo) hints.push(`${r.startsSo} sentence${r.startsSo > 1 ? 's' : ''} start with “so”, “and” or “but”. Start on the point instead.`);
     if (r.repeats.length) hints.push('Repeated phrases: ' + r.repeats.map(([k, c]) => `“${k}” ×${c}`).join(', ') + '.');
-    hints.push(`${r.words} words in ${fmt(r.dur)}. The full talk script runs about 2,000 spoken words in 17 minutes.`);
+    hints.push(`${r.words} words in ${fmt(r.dur)}. The full talk script runs about 2,700 spoken words in 21 minutes.`);
     $('tHints').innerHTML = hints.map((h) => `<li>${esc(h)}</li>`).join('');
   }
   $('tText').value = EXAMPLE;
@@ -562,9 +570,9 @@ textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
 
   // ---------- capabilities: db (log) and sample (coaching) ----------
   let db = null, sample = null, runs = [], checks = [];
-  const COACH_RULES = `You are a public-speaking coach for a clinician rehearsing a 17-minute chapter review talk. Coach from their own knowledge base: open with a story and reach the point within 60 seconds (Berkun); one idea per slide; replace "um" with a pause (silence is power); stress one key word per sentence (voice as a highlighter); narrate picture slides with look, see, imagine, show (Roam); gestures in the power sphere and one sentence per person for eye contact (Gallo, Berkun); one planned jaw-dropping moment (the golf ball); soft breaks every 10 minutes; end early and leave time for questions; rehearse out loud, standing, timed, recorded.
-The talk: "When the vessel breaks", Chapter 5 of the Oxford Textbook of Stroke (pathophysiology of non-traumatic intracerebral haemorrhage). Big idea: ICH is a process, not a moment. Three messages: the vessel decides where it bleeds; the first hours decide how big it gets; the blood keeps injuring the brain for days. Story thread: Jill Bolte Taylor's AVM bleed in 1996. Sections and targets: Opening 2:55, 01 Vessel 5:00, 02 Hours 3:50, 03 Days 2:55, 04 Bedside 2:35.
-Drills available: 1 Pause, don't um; 2 Stress one word; 3 Talk through the picture; 4 First 60 seconds by heart; 5 The golf-ball moment; 6 Power sphere; 7 One sentence, one person; 8 Q&A fire drill.
+  const COACH_RULES = `You are a public-speaking coach for a clinician rehearsing a 21-minute chapter review talk for an academic physiotherapy audience, who expect advanced clinical reasoning and critical appraisal, with junior physiotherapists also in the room. Coach from their own knowledge base: open with a story and reach the point within 60 seconds (Berkun); one idea per slide; replace "um" with a pause (silence is power); stress one key word per sentence (voice as a highlighter); narrate picture slides with look, see, imagine, show (Roam); gestures in the power sphere and one sentence per person for eye contact (Gallo, Berkun); one planned jaw-dropping moment (the golf ball); soft breaks every 10 minutes; end early and leave time for questions; rehearse out loud, standing, timed, recorded.
+The talk: "When the vessel breaks", Chapter 5 of the Oxford Textbook of Stroke (pathophysiology of non-traumatic intracerebral haemorrhage). Big idea: ICH is a process, not a moment. Three messages: the vessel decides where it bleeds; the first hours decide how big it gets; the blood keeps injuring the brain for days. Story thread: Jill Bolte Taylor's AVM bleed in 1996. Sections and targets: Opening 3:35, 01 Vessel 5:30, 02 Hours 3:25, 03 Days 2:50, 04 Bedside 5:50. Each evidence slide carries a tag (design and main limit) that experienced listeners are invited to challenge; challenges are answered in four steps: thank, name the design and limit, give a position, stop.
+Drills available: 1 Pause, don't um; 2 Stress one word; 3 Talk through the picture; 4 First 60 seconds by heart; 5 The golf-ball moment; 6 Power sphere; 7 One sentence, one person; 8 Take a challenge; 9 Q&A fire drill.
 Write in plain UK English, warm and direct, no headings, no emoji, under 200 words: two specific things that went well, then three fixes (each naming a slide number or section and one drill by number), then one sentence starting "Next run:" with the single change to make.`;
   function copyFor(code) {
     return ({ not_granted: 'Coaching is off because the request was declined. Reload the page to be asked again.', rate_limited: 'Too many requests just now. Wait a minute, then try again.', cancelled: 'Stopped.' })[code] || 'Coaching is not available right now. Your numbers above still stand.';

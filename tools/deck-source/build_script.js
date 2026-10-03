@@ -1,4 +1,5 @@
-// Speaker script PDF: key point, talking points, cue and bridge for every slide, with slide thumbnails.
+// Speaker script PDF (deck v3): key point, talking points, cue and bridge for every slide, with slide
+// thumbnails, plus two optional layers: plain words for junior colleagues and an appraisal point if challenged.
 // Usage: node build_script.js <thumbsDir> <out.pdf>
 const fs = require('fs');
 const path = require('path');
@@ -112,6 +113,21 @@ td.t { font-weight:700; white-space:nowrap; width:16mm; }
 .slide.div .say { margin-top:0; }
 .slide.div .say li { font-family:'Caladea','Cambria',serif; font-size:12pt; }
 
+/* two layers */
+.layers { margin-top:2.6mm; display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; }
+.layers.one { grid-template-columns:1fr; }
+.lay { border-radius:1.6mm; padding:1.8mm 2.6mm 2mm; font-size:9.4pt; line-height:1.36; }
+.lay .label { font-size:6.8pt; display:flex; gap:1.2mm; align-items:center; margin-bottom:.6mm; }
+.lay.plain { background:var(--mist); }
+.lay.plain .label { color:var(--slate); }
+.lay.app { border:.7pt solid var(--slate); }
+.lay.app .label { color:var(--ink); }
+.legend .p { display:inline-block; white-space:nowrap; padding:.6mm 2mm; border-radius:1mm; background:var(--mist); color:var(--slate); font-weight:700; font-size:8pt; letter-spacing:.08em; text-transform:uppercase; }
+.legend .a { display:inline-block; white-space:nowrap; padding:.4mm 1.8mm; border-radius:1mm; border:.7pt solid var(--slate); font-weight:700; font-size:8pt; letter-spacing:.08em; text-transform:uppercase; }
+.steps4 { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; font-size:9.6pt; }
+.steps4 li { display:grid; gap:.8mm; align-content:start; }
+.steps4 i { font-style:normal; font-family:'Caladea','Cambria',serif; font-weight:700; font-size:16pt; color:var(--red); line-height:1; }
+
 /* close page */
 .qa { columns:2; column-gap:8mm; }
 .qa div { break-inside:avoid; margin-bottom:3.2mm; }
@@ -121,6 +137,12 @@ td.t { font-weight:700; white-space:nowrap; width:16mm; }
 `;
 
 const sectionFor = (n) => S.sections.find((s) => s.from === n);
+const layersHtml = (sl) => {
+  const parts = [];
+  if (sl.plain) parts.push(`<div class="lay plain"><div class="label">${icon('LuSprout', '#3E5C76', 10)} Plain words</div>${sl.plain}</div>`);
+  if (sl.appraise) parts.push(`<div class="lay app"><div class="label">${icon('LuSearch', INK, 10)} If challenged</div>${sl.appraise}</div>`);
+  return parts.length ? `<div class="layers${parts.length === 1 ? ' one' : ''}">${parts.join('')}</div>` : '';
+};
 const cueHtml = (cues) => cues.map(([k, t]) => `<div class="cue">${icon(CUE[k][0])}<span><b>${CUE[k][1]}</b>${t}</span></div>`).join('');
 
 let body = '';
@@ -128,8 +150,8 @@ let body = '';
 body += `<section class="cover"><div class="arc"></div><div class="arc2"></div>
   <div class="label">Speaker script · Chapter 5 review</div>
   <h1>When the vessel breaks</h1>
-  <div class="sub">What to say, slide by slide</div>
-  <div class="when"><span class="chip r">Sunday 4 October 2026 · 8 pm</span><span class="chip">${icon('LuClock', INK, 12)} 17 minutes, then questions</span><span class="chip">29 slides</span></div>
+  <div class="sub">What to say, slide by slide · for an academic physiotherapy audience</div>
+  <div class="when"><span class="chip r">Sunday 4 October 2026 · 8 pm</span><span class="chip">${icon('LuClock', INK, 12)} About 21 minutes, then questions</span><span class="chip">36 slides + 2 hidden</span></div>
   <div class="idea"><div class="label">The big idea</div><h2>ICH is a process, not a moment.</h2>
     <ol><li><i>1</i><span>The vessel decides where it bleeds.</span></li><li><i>2</i><span>The first hours decide how big it gets.</span></li><li><i>3</i><span>The blood keeps injuring the brain for days.</span></li></ol></div>
   <div class="heart">
@@ -137,7 +159,7 @@ body += `<section class="cover"><div class="arc"></div><div class="arc2"></div>
       <ul class="lines">
         <li><span>First line</span><span>"My chapter is Chapter 5… I want to start with one person."</span></li>
         <li><span>Headline</span><span>"ICH is a process, not a moment."</span></li>
-        <li><span>Last line</span><span>"Thank you. What would you like me to clarify?"</span></li>
+        <li><span>Last line</span><span>"Thank you. Which claim tonight would you challenge?"</span></li>
       </ul></div>
     <div><div class="label">How to read each slide</div><h3>Key</h3>
       <ul class="legend">
@@ -147,6 +169,8 @@ body += `<section class="cover"><div class="arc"></div><div class="arc2"></div>
         <li>${icon('LuPause')} Pause &nbsp; ${icon('LuHand')} Ask the room &nbsp; ${icon('LuMousePointer2')} Point</li>
         <li>${icon('LuCircleDot')} Prop (the golf ball) &nbsp; ${icon('LuGauge')} Slow down</li>
         <li>${icon('LuChevronsRight', '#3E5C76')} <i class="muted">the line that carries you to the next slide</i></li>
+        <li><span class="p">${icon('LuSprout', '#3E5C76', 10)} Plain words</span> the same point for junior colleagues</li>
+        <li><span class="a">${icon('LuSearch', INK, 10)} If challenged</span> appraisal point; not in the timed script</li>
       </ul></div>
   </div>
   <div class="bottom"><span>Oxford Textbook of Stroke and Cerebrovascular Disease (ed. Norrving, OUP 2014). Chapter 5 by Constanza Rossi and Charlotte Cordonnier.</span><span>Aim for confidence, not memorising. Learn the three lines above; talk the rest.</span></div>
@@ -155,22 +179,22 @@ body += `<section class="cover"><div class="arc"></div><div class="arc2"></div>
 // ---------- overview ----------
 const rows = S.sections.filter((s) => s.time).map((s, i) => {
   const next = S.sections[i + 1];
-  const to = next ? next.from - 1 : 28;
+  const to = next ? next.from - 1 : 34;
   return `<tr><td class="num">${s.num || '00'}</td><td><b>${s.name}</b><br><span class="muted">${s.note}</span></td><td class="muted">Slides ${s.from}–${to}</td><td class="t">${s.time}</td></tr>`;
 }).join('');
 body += `<section class="overview"><div class="label">The talk on one page</div><h2>Running order</h2>
   <table><tr><th></th><th>Section</th><th>Slides</th><th>Time</th></tr>${rows}
-  <tr><td></td><td><b>Questions</b><br><span class="muted">Leave the references up. Backups on slides 30 and 31.</span></td><td class="muted">Slide 29</td><td class="t">Rest of slot</td></tr></table>
+  <tr><td></td><td><b>Questions</b><br><span class="muted">Leave the references up. Hidden backups on slides 37 and 38.</span></td><td class="muted">Slides 35–36</td><td class="t">Rest of slot</td></tr></table>
   <div class="boxes">
-    <div class="box r"><h3>${icon('LuHand')} Three moments with the room</h3><ul>
-      <li><b>Slide 12, ~6 min:</b> 30 seconds with a neighbour: "Primary or secondary?"</li>
-      <li><b>Slide 16, ~9 min:</b> hands up for A, B or C before the dots reveal.</li>
-      <li><b>Slide 23, ~14 min:</b> hands up: "true or false?"</li>
-      <li>Always <b>say what you see</b>: "Most of you went for B."</li>
-      <li>Online: use the chat or reactions instead of hands.</li></ul></div>
+    <div class="box r"><h3>${icon('LuHand')} Four moments with the room</h3><ul>
+      <li><b>Slide 14, ~8 min:</b> 30 seconds with a neighbour: "Primary or secondary?"</li>
+      <li><b>Slide 18, ~10 min:</b> hands up for A, B or C before the dots reveal.</li>
+      <li><b>Slide 25, ~14 min:</b> hands up: "true or false?"</li>
+      <li><b>Slide 29, ~16½ min:</b> the Day-4 case: A, B or C.</li>
+      <li>Always <b>say what you see</b>. Online: use the chat.</li></ul></div>
     <div class="box"><h3>${icon('LuCircleDot', INK)} The golf-ball moment</h3><ul>
       <li>Ball in a pocket you can reach without looking.</li>
-      <li>On slide 18, take it out <b>before</b> you speak.</li>
+      <li>On slide 20, take it out <b>before</b> you speak.</li>
       <li>Hold it at shoulder height. Three seconds of silence.</li>
       <li>Then: "Jill's surgeons removed a clot this size."</li>
       <li>Put it down where everyone can still see it.</li></ul></div>
@@ -182,9 +206,9 @@ body += `<section class="overview"><div class="label">The talk on one page</div>
       <li>Feet planted, one slow breath out, find a friendly face.</li></ul></div>
     <div class="box"><h3>${icon('LuTriangleAlert', INK)} If things go wrong</h3><ul>
       <li><b>Lost your place:</b> read the slide title aloud and carry on.</li>
-      <li><b>Running long:</b> skip slides 9, 11, 15, 19 and 22 (saves about 3.5 minutes).</li>
+      <li><b>Running long:</b> hide slides 10, 13, 17 and 24 (about 19 min). Shorter still: also hide 25–26 (about 17½ min).</li>
       <li><b>Tech fails:</b> give the three messages and Jill's story from your card.</li>
-      <li><b>Rambling question:</b> "Do you mean X or Y?"</li>
+      <li><b>Hostile challenge:</b> thank them, name the design and its limit, give your position.</li>
       <li><b>Don't know:</b> "I don't want to guess. I'll check and come back to you."</li></ul></div>
   </div></section>`;
 
@@ -209,12 +233,15 @@ for (const sl of S.slides) {
       <div class="say${sl.verbatim ? ' vbx' : ''}"><div class="label">Say</div><ul>${sl.say.map((t) => `<li><span>${t}</span></li>`).join('')}</ul></div>
       ${cueHtml(sl.cues)}
       ${sl.next ? `<div class="next">${icon('LuChevronsRight', '#3E5C76')}<span>${sl.next}</span></div>` : ''}
+      ${layersHtml(sl)}
     </div></article>`;
 }
 
 // ---------- Q&A ----------
 body += `<section class="break"><div class="sec first"><span class="n">?</span><div><h2>Likely questions</h2><div class="note">Answer in under 30 seconds: answer, one fact, stop.</div></div></div>
   <div class="qa">${S.qa.map(([q, a]) => `<div><p class="q">${q}</p><p>${a}</p></div>`).join('')}</div>
+  <div class="box" style="margin-top:3mm"><h3>${icon('LuSearch', INK)} When someone challenges a claim</h3>
+  <ol class="steps4"><li><i>1</i><span><b>Thank them.</b> "Good challenge." It buys you two seconds.</span></li><li><i>2</i><span><b>Name the design and its limit.</b> "That's one RCT of 243, with a wide interval."</span></li><li><i>3</i><span><b>Give your position.</b> "So I read it as a signal, not an effect size."</span></li><li><i>4</i><span><b>Stop.</b> Or: "Can I check that and come back to you?"</span></li></ol></div>
   <div class="box r" style="margin-top:4mm"><h3>${icon('LuMessageCircleQuestion')} If the room goes quiet</h3>
   <ul><li>Ask: "Which of these windows do we meet most often in our own practice, and are we timing our assessments around it?"</li><li>Then wait a full five seconds. Silence gives people time to think.</li></ul></div>
 </section>`;
